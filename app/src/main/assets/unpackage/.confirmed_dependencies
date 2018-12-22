@@ -1,0 +1,38 @@
+{
+  "income.html": {
+    "refer": [
+      "wallet.html"
+    ]
+  },
+  "wallet.html": {
+    "refer": [
+      "income.html",
+      "transaction.html",
+      "bindpay.html",
+      "bindback.html",
+      "backcard.html"
+    ]
+  },
+  "transaction.html": {
+    "refer": [
+      "wallet.html"
+    ]
+  },
+  "bindback.html": {
+    "refer": [
+      "backcard.html",
+      "wallet.html"
+    ]
+  },
+  "backcard.html": {
+    "refer": [
+      "bindback.html",
+      "wallet.html"
+    ]
+  },
+  "bindpay.html": {
+    "refer": [
+      "wallet.html"
+    ]
+  }
+}

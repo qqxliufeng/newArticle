@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>用户协议</title>
+    <!--mui样式-->
+    <link rel="stylesheet" href="css/mui.min.css"/>
+    <!--公用样式样式-->
+    <link rel="stylesheet" href="css/comment.css"/>
+    <!--页面样式-->
+    <link rel="stylesheet" href="css/style.css"/>
+    <!--js-->
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+	<!--rem js-->
+	<script type="text/javascript" src="js/rem.js" ></script>
+	<!--mui js-->
+	<script type="text/javascript" src="js/mui.min.js" ></script>
+	<!--common js-->
+	<script type="text/javascript" src="js/common.js" ></script>
+	<!--vue js-->
+	<script type="text/javascript" src="js/vue.min.js" ></script>
+    <style type="text/css">
+        .protocol h4{
+           text-align:center;
+           padding-top:5%;
+        }
+        .protocol div{
+           padding:5%;
+        }
+        .protocol p{
+           color:#333333;
+           font-size:.8rem;
+        }
+
+    </style>
+</head>
+<body>
+<!--意见反馈 -->
+<div class="protocol"  id="app">
+    <h4>用户协议</h4>
+    <div  id="protocol"></div>
+</div>
+<script>
+		
+	$(function() {
+
+		dataRequest.method("/api/member/accountProtocol", {
+			
+		}, "post", function(res) {
+            
+			if(res.code == 200) {
+				$("#protocol").html(res.result)
+			} 
+
+		})
+	})
+</script>
+</body>
+</html>

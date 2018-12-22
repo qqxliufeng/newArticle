@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>下载</title>
+		<!--mui样式-->
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<!--公用样式样式-->
+		<link rel="stylesheet" href="css/comment.css" />
+		<!--页面样式-->
+		<link rel="stylesheet" href="css/style.css" />
+		<!--js-->
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<!--rem js-->
+		<script type="text/javascript" src="js/rem.js"></script>
+		<!--mui js-->
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<!--common js-->
+		<script type="text/javascript" src="js/common.js"></script>
+		<!--vue js-->
+		<script type="text/javascript" src="js/vue.min.js"></script>
+	</head>
+	<body>
+		<div class="index_wxdownload hide" style="width: 100%;height: 100%;position:relative;z-index: 1;">
+				<img src="images/download.png" style="display: block;width: 100%;margin-top: 3.8rem;">
+		</div>
+		<div class="index_topbox">
+			<!--下载-->
+			<div class="download">
+				<img src="images/down_02.png" alt="" />
+			</div>
+			<div class="down-btn center">
+				<div>
+				     <img src="images/down_05.png"/>
+				</div>
+				<a href="javascript:;" id="android" class="hide">
+					<button type="button">
+						<img src="images/down_09.png" class="fl"/>
+						<span class="ft85 red fl">Android下载</span>
+				    </button>
+				</a>
+				<a href="javascript:;" id="ios" class="hide">
+				<button type="button">
+					<img src="images/down_ios.png" class="fl"/>
+					<span class="ft85 red fl">Ios下载</span>
+				</button>
+				</a>
+			</div>
+		</div>
+		<script>
+			$(function() {
+				//实例化vue
+				vue = new Vue({
+					el: '#app',
+					data: {
+						list: [],
+					},
+					methods: {
+						getData: function() {
+							dataRequest.method("/api/member/setting", {
+								
+							}, "post", function(res) {
+
+							if(res.code == 200) {
+								if(isWeixinBrowser()) {
+									$(".index_topbox").hide();
+									$(".index_wxdownload").show();
+								} else {
+									$(".index_wxdownload").hide();
+									$(".index_topbox").show();
+								}
+			
+								if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+									var str = $("#ios").attr('href',res.result.ios);
+									window.location.href = res.result.ios
+									$("#android").hide();
+									$("#ios").show();
+								} else if(/(Android)/i.test(navigator.userAgent)) { //判断Android
+									var str = $("#android").attr('href',res.result.android);
+									window.location.href = res.result.android
+									$("#android").show();
+									$("#ios").hide();
+								} else { //pc
+//									window.location.href = 'http://article.581vv.com'
+								};
+							}
+
+							})
+
+						}
+
+					}
+				})
+				vue.getData()
+                
+			})
+
+		</script>
+		<script>
+	     	/*背景色*/
+	      	$("html").addClass("whitebg");
+	      	$("body").addClass("whitebg");
+		</script>
+	</body>
+</html>
+       

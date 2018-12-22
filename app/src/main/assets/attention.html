@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>关注</title>
+		<!--mui样式-->
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<!--公用样式样式-->
+		<link rel="stylesheet" href="css/comment.css" />
+		<!--页面样式-->
+		<link rel="stylesheet" href="css/style.css" />
+		<!--js-->
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+		<!--rem js-->
+		<script type="text/javascript" src="js/rem.js" ></script>
+		<!--mui js-->
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+		<!--common js-->
+		<script type="text/javascript" src="js/common.js" ></script>
+		<!--vue js-->
+		<script type="text/javascript" src="js/vue.min.js" ></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<style>
+			img{
+				object-fit: cover ;
+			}
+		</style>
+	</head>
+	<body>
+		<!--关注 -->
+		<div class="attention" id="app">
+			<div class="attention-title" style="margin-top: 0.6rem;">我关注的好友</div>
+			<div class="whitebg">
+				<ul class="whitebg">
+					<li class="clearfix" style="background: none;text-align: center;display: none;" v-show="list==''">
+						暂无关注好友信息~
+					</li>
+					<li class="clearfix" v-for=" item in list " v-if="item.like_userData.member_id">
+						<input type="hidden" :value="item.like_userData.member_id" />
+						<img :src="url+item.like_userData.member_pic" class="fl" onclick="jumpMain(this,0)" />
+						<div class="fl" onclick="jumpMain(this,0)">
+							<div v-text="item.like_userData.member_nickname"></div>
+							<p>
+								<span><span v-text="item.like_articleCount">0</span>篇笔记</span>
+								<span><span v-text="item.like_fanCount" class="fan">0</span>粉丝</span>
+							</p>
+						</div>
+						<button type="button" class="fr" @click="like($event)">取消关注</button>
+						<input type="hidden" :value="item.like_reuid" />
+					</li>
+				</ul>
+			</div>
+			<div class="attention-title" style="margin-top: 0.6rem;display: none;" v-show="arr!=''">您可能感兴趣的人</div>
+			<div class="whitebg">
+				<ul class="whitebg">
+					
+					<li class="clearfix" v-for="item in arr" v-if="item.member_id">
+						<input type="hidden" :value="item.member_id"  />
+						<img :src="url+item.member_pic" class="fl" onclick="jumpMain(this,0)"/>
+						<div class="fl" onclick="jumpMain(this,0)">
+							<div v-text="item.member_nickname"></div>
+							<p>
+								<span><span v-text="item.member_articleCount">0</span>篇笔记</span>
+								<span><span v-text="item.member_fanCount" class="fan">0</span>粉丝</span>
+							</p>
+						</div>
+						<button type="button" class="fr" @click="like($event)" style="background:green;color:white;border:none">关注</button>
+						<input type="hidden" :value="item.member_id" />
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script>
+		 
+		$(function() {
+		   //获取webview.js  返回的用户ID
+//		   uid  = 650
+           uid  = article.getUserId()
+           
+			//实例化vue
+			vue = new Vue({
+				el: '#app',
+				data: {
+					list: [],
+					arr: [],
+				},
+				methods: {
+					getData: function() {
+						dataRequest.method("/api/member/myLikeFriend", {
+							'uid': uid,
+						}, "post", function(res) {
+                            
+							if(res.code == 200) {
+								vue.list = res.result
+								vue.arr = res.arr
+							}else{
+								vue.list = res.result
+								vue.arr = res.arr
+							}
+
+						})
+
+					},
+					like:function(event){
+						var reuid = $(event.target).next().val()
+						var fanobj= $(event.target).prev().find('.fan')
+						var fan   = parseFloat(fanobj.text())
+						
+						dataRequest.method("/api/member/myLikeDo", {
+							'uid': uid,
+							'reuid':reuid
+						}, "post", function(res) {
+//                          article.sendMessageUpdateFocus('update_focus')
+							if(res.code == 200) {
+							   if(res.result){
+							   	  $(event.target).css(
+							   	  	{
+							   	  	'background':'white',
+							   	  	'color':'#989898',
+							   	  	'border':'1px solid #989898'
+							   	  	}
+							   	  	).text('取消关注')
+							   	  fanobj.text(fan + 1)
+							   	  mui.toast('关注成功')
+							   }else{
+							   	  $(event.target).css({
+							   	  	'background':'green',
+							   	  	'color':'white',
+							   	  	'border':'none'
+							   	  	}
+							   	  ).text('关注')
+							   	  fanobj.text(fan - 1)
+							   	  mui.toast('取消关注成功')
+							   }
+							   
+							} else {
+							  mui.toast(res.msg)
+							}
+
+						})
+					}
+
+				}
+			})
+			vue.getData()
+
+		})
+		function jumpMain(obj,status){
+        	var uid      =  $(obj).parent().children().val()
+        	if(status){
+        		var uid  =  $(obj).parent().parent().parent().children().val()
+        	}
+        	article.startPersonalIndexById(uid)
+        }
+	 </script>
+</html>
+       

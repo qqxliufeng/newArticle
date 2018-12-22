@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="my_matisse_style" parent="Matisse.Zhihu">
+        <item name="colorPrimary">#E84245</item>
+        <item name="colorPrimaryDark">#E84245</item>
+    </style>
+
+    <style name="AppToolbarPopupTheme" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownListViewStyle">@style/AppDropDownListViewStyle</item>
+    </style>
+
+    <style name="AppDropDownListViewStyle" parent="Widget.AppCompat.ListView.DropDown">
+        <item name="android:divider">#eeeeee</item>
+        <item name="android:dividerHeight">1dp</item>
+        <item name="android:listSelector">#eeeeee</item>
+    </style>
+
+</resources>

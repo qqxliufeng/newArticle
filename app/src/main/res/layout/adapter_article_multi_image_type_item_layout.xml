@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:background="@drawable/select_article_item_bg"
+              android:orientation="vertical"
+              android:padding="@dimen/dp_10">
+
+    <TextView
+            android:id="@+id/mTvArticleItemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="你有多自律，就能走多远"
+            android:textColor="@color/blackTextColor"
+            android:textSize="@dimen/sp_14"/>
+
+    <com.android.ql.lf.article.ui.widgets.ImageContainerLinearLayout
+            android:id="@+id/mICllArticleListItemContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"/>
+
+    <include layout="@layout/layout_article_item_bottom_layout"/>
+
+</LinearLayout>

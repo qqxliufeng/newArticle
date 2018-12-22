@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/mMenuArticleCollection"
+        android:icon="@drawable/img_collection_icon1"
+        android:title="收藏" />
+
+    <item
+        android:id="@+id/mMenuArticleShare"
+        android:icon="@drawable/img_share_icon2"
+        android:title="分享" />
+
+    <item
+        android:id="@+id/mMenuArticleEdit"
+        android:icon="@drawable/img_gray_write_icon"
+        android:title="编辑" />
+
+    <item
+        android:id="@+id/mMenuArticlePrivate"
+        android:icon="@drawable/img_private_icon"
+        android:title="设为私密" />
+
+    <item
+        android:id="@+id/mMenuArticlePost"
+        android:icon="@drawable/img_tougao_icon"
+        android:title="投稿" />
+
+    <item
+        android:id="@+id/mMenuArticleDelete"
+        android:icon="@drawable/img_delete_icon"
+        android:title="删除" />
+
+</menu>

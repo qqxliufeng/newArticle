@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:background="#fff"
+                  android:orientation="vertical">
+        <include layout="@layout/layout_pre_step"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:text="注册后更精彩"
+                android:textColor="@color/blackTextColor"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+        <EditText
+                android:id="@+id/mEtLoginUserPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:hint="请输入手机号"
+                android:paddingBottom="20dp"
+                android:textSize="@dimen/sp_14"/>
+
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp">
+
+            <EditText
+                    android:id="@+id/mEtLoginUserVerCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入验证码"
+                    android:inputType="number"
+                    android:paddingBottom="20dp"
+                    android:textSize="@dimen/sp_14"/>
+
+            <com.android.ql.lf.baselibaray.ui.widgets.CountDownTextView
+                    android:id="@+id/mTvLoginUserVerCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:gravity="right|center_vertical"
+                    android:text="获取验证码"
+                    android:textColor="@color/blackTextColor"
+                    android:textSize="@dimen/sp_16"/>
+
+        </FrameLayout>
+
+        <EditText
+                android:id="@+id/mEtLoginUserPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:inputType="textPassword"
+                android:maxLength="16"
+                android:hint="请输入密码"
+                android:paddingBottom="20dp"
+                android:textSize="@dimen/sp_14"/>
+
+        <EditText
+                android:id="@+id/mEtLoginUserPasswordTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:inputType="textPassword"
+                android:maxLength="16"
+                android:hint="请再次输入密码"
+                android:paddingBottom="20dp"
+                android:textSize="@dimen/sp_14"/>
+
+
+        <Button
+                android:id="@+id/mBtFirstStepRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/shape_bt_bg_1"
+                android:text="确定"
+                android:textColor="#fff"
+                android:textSize="@dimen/sp_16"/>
+
+        <TextView
+                android:id="@+id/mLlLoginFirstLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:padding="@dimen/dp_10"
+                android:gravity="center"
+                android:layout_marginBottom="30dp"
+                android:text="已有账号？去登录>"/>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

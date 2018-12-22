@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/dp_10"
+              android:orientation="vertical"
+              android:background="#fff"
+              android:padding="@dimen/dp_10">
+
+    <TextView
+            android:id="@+id/mTvArticleInfoTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="《诗词的魅力》"
+            android:textColor="@color/blackTextColor"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+    <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+                android:id="@+id/mLlArticleInfoForAuthInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:id="@+id/mIvArticleInfoForAuthInfoFace"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/img_glide_circle_load_default"/>
+
+            <TextView
+                    android:id="@+id/mTvArticleInfoForAuthInfoNickName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    tools:text="NN~简单"
+                    android:textColor="@color/blackTextColor"
+                    android:textSize="@dimen/sp_14"/>
+        </LinearLayout>
+
+        <CheckedTextView
+                android:id="@+id/mCtvArticleInfoForAuthInfoFocus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/select_ctv_bg_1"
+                android:text="✓ 已关注"
+                android:paddingLeft="@dimen/dp_10"
+                android:paddingRight="@dimen/dp_10"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:textColor="@color/select_ctv_color"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:orientation="horizontal">
+
+        <TextView
+                android:id="@+id/mTvArticleInfoType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_tv_bg_5"
+                android:paddingLeft="10dp"
+                android:paddingTop="2dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="2dp"
+                android:text="类别"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/sp_12"/>
+
+        <TextView
+                android:id="@+id/mTvArticleInfoDes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:text="2018.08.18 09:51 . 字数1161 . 阅读88"
+                android:textColor="@color/grayTextColor"
+                android:textSize="@dimen/sp_12"/>
+
+    </LinearLayout>
+
+</LinearLayout>

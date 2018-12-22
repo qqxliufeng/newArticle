@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_10"
+        android:background="@color/lineColor" />
+
+    <RelativeLayout
+        android:id="@+id/mRlPersonalEditFaceContainer"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="#fff"
+        android:padding="@dimen/dp_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="更改头像"
+            android:textColor="@color/blackTextColor"
+            android:textSize="@dimen/sp_14" />
+
+        <ImageView
+            android:id="@+id/mIvPersonalEditFace"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/img_glide_circle_load_default" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:background="@color/lineColor" />
+
+    <RelativeLayout
+        android:id="@+id/mRlPersonalEditNickNameContainer"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="#fff"
+        android:padding="@dimen/dp_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="更改昵称"
+            android:textColor="@color/blackTextColor"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/mTvPersonalEditNickName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical|right"
+            android:minWidth="100dp"
+            android:text="暂无"
+            android:textColor="@color/grayTextColor" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:background="@color/lineColor" />
+
+    <RelativeLayout
+        android:id="@+id/mRlPersonalEditSexContainer"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="#fff"
+        android:padding="@dimen/dp_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="性别"
+            android:textColor="@color/blackTextColor"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/mTvPersonalEditSex"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="right|center_vertical"
+            android:text="男"
+            android:textColor="@color/grayTextColor" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:background="@color/lineColor" />
+
+    <RelativeLayout
+        android:id="@+id/mRlPersonalEditBirthdayContainer"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="#fff"
+        android:padding="@dimen/dp_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="生日"
+            android:textColor="@color/blackTextColor"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/mTvPersonalEditBirthday"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical|right"
+            android:minWidth="100dp"
+            android:text="请选择"
+            android:textColor="@color/grayTextColor" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:background="@color/lineColor" />
+
+
+    <TextView
+        android:id="@+id/mTvPersonalEditDes"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_centerVertical="true"
+        android:background="#fff"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dp_10"
+        android:text="个性签名"
+        android:textColor="@color/blackTextColor"
+        android:textSize="@dimen/sp_14" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:background="@color/lineColor" />
+
+
+</LinearLayout>

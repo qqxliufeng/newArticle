@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/grayBgColor">
+
+    <RelativeLayout
+            android:id="@+id/mRlAccountSafeResetPhone"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_10"
+                    android:background="#fff">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="手机号"
+                  android:textSize="@dimen/sp_14"
+                  android:textColor="@color/blackTextColor"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:textColor="@color/normalTextColor"
+                  android:id="@+id/mTvAccountSafePhone"
+                  android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+
+    <TextView
+            android:id="@+id/mTvAccountSafeResetPassword"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:background="#fff"
+              android:layout_marginTop="1dp"
+              android:textSize="@dimen/sp_14"
+              android:padding="@dimen/dp_10"
+            android:textColor="@color/blackTextColor"
+              android:text="重置密码"/>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:padding="@dimen/dp_10"
+                  android:id="@+id/mLlAccountSafeWX"
+                  android:background="#fff"
+                  android:layout_marginTop="@dimen/dp_10"
+                  android:gravity="center_vertical"
+                  android:orientation="horizontal">
+
+        <ImageView android:layout_width="25dp" android:layout_height="25dp"
+                   android:layout_gravity="center"
+                   android:src="@drawable/img_wx_unselect_icon"
+                   android:id="@+id/mIvAccountSafeWX"/>
+        <TextView
+                android:id="@+id/mTvAccountSafeWX"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="未绑定"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:textColor="@color/normalTextColor"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:padding="@dimen/dp_10"
+                  android:id="@+id/mLlAccountSafeWB"
+                  android:background="#fff"
+                  android:layout_marginTop="1dp"
+                  android:gravity="center_vertical"
+                  android:orientation="horizontal">
+
+        <ImageView android:layout_width="25dp" android:layout_height="25dp"
+                   android:layout_gravity="center"
+                   android:src="@drawable/img_wb_unselect_icon"
+                   android:id="@+id/mIvAccountSafeWB"/>
+        <TextView
+                android:id="@+id/mTvAccountSafeWB"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="未绑定"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:textColor="@color/normalTextColor"/>
+    </LinearLayout>
+
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:padding="@dimen/dp_10"
+                  android:id="@+id/mLlAccountSafeQQ"
+                  android:background="#fff"
+                  android:layout_marginTop="1dp"
+                  android:gravity="center_vertical"
+                  android:orientation="horizontal">
+
+        <ImageView android:layout_width="25dp" android:layout_height="25dp"
+                   android:layout_gravity="center"
+                   android:src="@drawable/img_qq_unselect_icon"
+                   android:id="@+id/mIvAccountSafeQQ"/>
+        <TextView
+                android:id="@+id/mTvAccountSafeQQ"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="未绑定"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:textColor="@color/normalTextColor"/>
+    </LinearLayout>
+
+
+</LinearLayout>

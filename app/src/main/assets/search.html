@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>搜索</title>
+		<!--mui样式-->
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<!--公用样式样式-->
+		<link rel="stylesheet" href="css/comment.css" />
+		<!--页面样式-->
+		<link rel="stylesheet" href="css/style.css" />
+		<!--js-->
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<!--rem js-->
+		<script type="text/javascript" src="js/rem.js"></script>
+		<!--mui js-->
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<!--common js-->
+		<script type="text/javascript" src="js/common.js"></script>
+		<!--vue js-->
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<!--搜索-->
+			<div class="search clearfix garybg">
+				<input type="text" placeholder="搜索文章、用户" @keyup="search" class="fl" id="search" />
+				<button type="button" class="fr"  @click="clear">
+			 		<img src="images/clear.png" />
+			 	</button>
+			</div>
+			<!--搜索热门-->
+			<div class="hot hotS">
+				<div class="hot-title ft75 bold clearfix">
+					<img src="images/hot.png" class="fl">
+					<span class="fl">热门推荐</span>
+				</div>
+				<ul>
+					<li class="clearfix" v-for="(item, index) in list" onclick="jumpDet(this)">
+						<input type="hidden" :value="item.articles_id" />
+						<input type="hidden" :value="item.articles_status" />
+						<b class="red" v-text="index+1"></b>
+						<span v-text="item.articles_title"></span>
+						<span class="gary">阅读 <span v-text="item.articles_read">0</span></span>
+					</li>
+				</ul>
+			</div>
+			<!--搜索无结果-->
+			<div class="solution center" style="display: none;">
+				<img src="images/searchimg.png">
+				<div class="gary">搜索不到您要的结果，换个内容试试~</div>
+			</div>
+			<!--搜索中-->
+			<div class="search-ing hide">
+				<ul>
+					<li class="clearfix" v-for="item in arr" onclick="jumpMain(this)">
+						<input type="hidden" :value="item.member_id"  />
+						<img :src="url+item.member_pic" class="fl" />
+						<div class="fl">
+							<div v-text="item.member_nickname"></div>
+							<p>粉丝 <span v-text="item.member_fanCount">0</span></p>
+						</div>
+						<nav class="fr gary">作者</nav>
+					</li>
+				</ul>
+				<div class="hot">
+					<ul>
+						<li class="clearfix" v-for="(item, index) in list" onclick="jumpDet(this)">
+							<input type="hidden" :value="item.articles_id" />
+						    <input type="hidden" :value="item.articles_status" />
+							<span v-text="item.articles_title"></span>
+							<span class="gary">阅读 <span v-text="item.articles_read">0</span></span>
+						</li>
+						<div class="loadMore animate" style="margin-top: 0.2rem;clear: both;">
+							<img src="images/loading@2x.png">加载更多
+						</div>
+					</ul>
+				</div>
+			</div>
+			<!--搜索后-->
+			<!--<div class="search-after hide">
+				<a href="">
+					<div class="search-title clearfix">
+						<span class="gary fl">相关用户</span>
+						<img src="images/gonext.png" class="gonext fr" />
+					</div>
+				</a>
+				<div class="search-uesr">
+					<ul>
+						<a href="">
+							<li>
+								<img src="images/headimg_03.png" />
+								<p>自律</p>
+							</li>
+						</a>
+					</ul>
+				</div>
+			</div>-->
+			<!--<div class="hr"></div>
+			<div class="search-after hide">
+				<div class="search-title clearfix bor0">
+					<span class="gary fl">相关文章</span>
+				</div>
+				<div class="search-list">
+					<ul>
+						<a href="">
+							<li>
+								<div>你有多<span class="red">自律</span>，就能走多远</div>
+								<nav class="gary clearfix">
+									<span class="uear-name fl">Silina</span>
+									<div class="fl">
+										<img src="images/search-icon_03.png" />
+										<span>35020</span>
+									</div>
+									<div class="fl">
+										<img src="images/search-icon_05.png" />
+										<span>20</span>
+									</div>
+									<div class="fl">
+										<img src="images/search-icon_07.png" />
+										<span>80</span>
+									</div>
+									<span class="time fr">2018.10.01 22:10</span>
+								</nav>
+							</li>
+						</a>
+					</ul>
+				</div>
+			</div>-->
+		</div>
+		<script id="list-template" type="text/html">
+			{{each items as item index}}
+			    <li class="clearfix p" onclick="jumpDet(this)">
+			        <input type="hidden" value="{{item.articles_id}}" />
+				    <input type="hidden" value="{{item.articles_status}}" />
+					<span >{{item.articles_title}}</span>
+					<span class="gary">阅读 <span>{{item.articles_read}}</span></span>
+				</li>
+			{{/each}}
+	    </script>
+		<script>
+			$(function() {
+				/*背景色*/
+				$("html").addClass("whitebg");
+				$("body").addClass("whitebg");
+				//实例化vue
+				vue = new Vue({
+					el: '#app',
+					data: {
+						list: [],
+						arr: []
+					},
+					methods: {
+						getData: function() { 
+							document.activeElement.blur();
+							dataRequest.method("/api/article/articleKeyword", {
+
+							}, "get", function(res) {
+
+								if(res.code == 200) {
+									vue.list = res.result
+								}
+							})
+
+						},
+						search: function() {
+							var search = $("#search").val()
+							if(search == '') {
+								$(".hotS").show()
+								$(".search-ing").hide()
+								$(".solution").hide()
+								$(".p").remove()
+								vue.getData()
+								return;
+							}
+							dataRequest.method("/api/article/articleKeyword", {
+								keyword: search
+							}, "post", function(res) {
+
+								if( res.code == 200 ) {
+									document.activeElement.blur();
+									vue.list = res.result
+									vue.arr = res.arr
+									$(".hotS").hide()
+									$(".search-ing").show()
+									$(".solution").hide()
+									setTimeout(function() {
+										//上拉加载
+										data_lod(res.arr1, '/api/article/articleKeyword', {
+											'keyword': search
+										})
+									}, 5)
+									
+								} else {
+									$(".hotS").hide()
+									$(".search-ing").hide()
+									$(".solution").show()
+									setTimeout(function() {
+										//上拉加载
+										data_lod(res.arr1, '/api/article/articleKeyword', {
+											'keyword': search
+										})
+									}, 5)
+								}
+							})
+						},
+						clear:function(){
+							$("#search").val("")
+							$(".hotS").show()
+							$(".search-ing").hide()
+							$(".solution").hide()
+							vue.getData()
+						}
+
+					}
+				})
+				vue.getData()
+
+			})
+            function jumpMain(obj){
+	        	var uid      =  $(obj).children().val()
+	        	article.startPersonalIndexById(uid)
+	        }
+			function jumpDet(obj) {
+				var aid    = $(obj).children().val()
+				var status = $(obj).children().next().val()
+				article.myJump(status, aid)
+			}
+		</script>
+	</body>
+
+</html>

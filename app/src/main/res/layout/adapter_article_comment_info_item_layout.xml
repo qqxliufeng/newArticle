@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content"
+                                                   android:background="#fff"
+                                                   android:orientation="vertical"
+                                                   android:padding="@dimen/dp_10">
+
+    <ImageView
+            android:id="@+id/mIvArticleCommentInfoItemUserFace"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/img_glide_circle_load_default"/>
+
+    <TextView
+            android:id="@+id/mTvArticleCommentInfoItemUserNickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:text="暂无"
+            android:textColor="@color/blackTextColor"
+            app:layout_constraintLeft_toRightOf="@id/mIvArticleCommentInfoItemUserFace"/>
+
+    <TextView
+            android:id="@+id/mTvArticleCommentInfoItemDes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:textColor="@color/grayTextColor"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintBottom_toBottomOf="@id/mIvArticleCommentInfoItemUserFace"
+            app:layout_constraintLeft_toRightOf="@id/mIvArticleCommentInfoItemUserFace"/>
+
+
+    <ImageView
+            android:id="@+id/mIvArticleCommentInfoItemComment"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:padding="7dp"
+            android:src="@drawable/img_comment_icon"
+            app:layout_constraintRight_toLeftOf="@id/mIvArticleCommentInfoItemPraise"/>
+
+    <ImageView
+            android:id="@+id/mIvArticleCommentInfoItemPraise"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="7dp"
+            android:src="@drawable/img_praise_icon_1"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+            android:id="@+id/mTvArticleCommentInfoItemContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/blackTextColor"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintTop_toBottomOf="@id/mIvArticleCommentInfoItemUserFace"/>
+
+    <com.android.ql.lf.article.ui.widgets.CommentLinearLayout
+            android:id="@+id/mCLLArticleCommentInfoItemReplyContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            app:layout_constraintTop_toBottomOf="@id/mTvArticleCommentInfoItemContent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

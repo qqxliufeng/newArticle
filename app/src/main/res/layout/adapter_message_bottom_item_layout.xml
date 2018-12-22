@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content"
+                                                   android:background="#fff"
+                                                   android:orientation="vertical"
+                                                   android:paddingLeft="@dimen/dp_10"
+                                                   android:paddingTop="@dimen/dp_10"
+                                                   android:paddingRight="@dimen/dp_10">
+
+    <ImageView
+            android:id="@+id/mIvMessageBottomItemFace"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/img_glide_circle_load_default"/>
+
+
+    <TextView
+            android:id="@+id/mTvMessageBottomItemNickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            tools:text="落暮红尘"
+            android:textColor="@color/blackTextColor"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintLeft_toRightOf="@id/mIvMessageBottomItemFace"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <TextView
+            android:id="@+id/mTvMessageBottomItemContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:ellipsize="end"
+            tools:text="你好啊"
+            android:singleLine="true"
+            android:textColor="@color/grayTextColor"
+            android:textSize="@dimen/sp_14"
+            android:layout_marginRight="@dimen/dp_10"
+            app:layout_constraintRight_toLeftOf="@id/mTvMessageBottomItemTime"
+            app:layout_constraintTop_toBottomOf="@id/mTvMessageBottomItemNickName"
+            app:layout_constraintBottom_toBottomOf="@id/mIvMessageBottomItemFace"
+            app:layout_constraintLeft_toRightOf="@id/mIvMessageBottomItemFace"/>
+
+    <TextView
+            android:id="@+id/mTvMessageBottomItemTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="32分钟前"
+            android:textColor="@color/grayTextColor"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@color/lineColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mIvMessageBottomItemFace"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

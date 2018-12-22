@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                                            android:layout_height="match_parent"
+                                            android:layout_width="match_parent"
+                                            android:background="@color/grayBgColor">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:padding="10dp"
+                  android:text="问题和意见"
+                  android:textSize="@dimen/sp_14"
+                  android:textColor="@color/grayTextColor"/>
+        <EditText android:layout_width="match_parent" android:layout_height="150dp"
+                  android:background="#fff"
+                  android:id="@+id/mEtFeedBackContent"
+                  android:hint="请留下您宝贵的意见。（100字以内）"
+                  android:maxLength="100"
+                  android:textSize="@dimen/sp_14"
+                  android:gravity="top"
+                  android:padding="@dimen/dp_10"/>
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_10">
+
+            <TextView
+                    android:id="@+id/mTvFeedBackImageDes"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/grayTextColor"
+                    android:layout_marginRight="30dp"
+                    android:text="图片（选填，提供问题截图）"/>
+
+            <TextView
+                    android:id="@+id/mTvFeedBackImageCount"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="0/4"/>
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/mRvFeedBackImageContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:padding="10dp"
+                  android:text="联系方式（选填）"
+                  android:textSize="@dimen/sp_14"
+                  android:textColor="@color/grayTextColor"/>
+        <EditText
+                android:id="@+id/mEtFeedBackPhone"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:background="#fff"
+                android:hint="微信/QQ/邮箱"
+                android:maxLength="100"
+                android:textSize="@dimen/sp_14"
+                android:gravity="top"
+                android:padding="@dimen/dp_10"/>
+
+        <Button
+                android:id="@+id/mBtFeedBackSubmit"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:text="提交反馈"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"
+                android:textColor="#fff"
+                android:textSize="@dimen/sp_16"
+                android:background="@drawable/shape_bt_bg_1"/>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

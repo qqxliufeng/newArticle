@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:background="@drawable/select_article_item_bg"
+              android:padding="@dimen/dp_10">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/mTvArticleItemTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="有一种心态叫放下"
+                    android:textColor="@color/blackTextColor"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textSize="@dimen/sp_14"/>
+
+            <TextView
+                    android:id="@+id/mTvArticleItemContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp_10"
+                    tools:text="心像口袋，什么都不装的叫心灵，装一点的叫心眼，装多了叫心计心像口袋，什么都不装的叫心灵，装一点的叫心眼，装多了叫心计心像口袋，什么都不装的叫心灵，装一点的叫心眼，装多了叫心计"
+                    android:textColor="@color/grayTextColor"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:lineSpacingExtra="2dp"
+                    android:textSize="@dimen/sp_14"/>
+
+        </LinearLayout>
+
+        <ImageView
+                android:id="@+id/mIvArticleItemImage"
+                android:layout_width="100dp"
+                android:layout_height="90dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_glide_load_default"/>
+
+    </LinearLayout>
+
+    <include layout="@layout/layout_article_item_bottom_layout"/>
+
+</LinearLayout>

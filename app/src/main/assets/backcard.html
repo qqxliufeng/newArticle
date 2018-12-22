@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>银行卡</title>
+		<!--mui样式-->
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<!--公用样式样式-->
+		<link rel="stylesheet" href="css/comment.css" />
+		<!--页面样式-->
+		<link rel="stylesheet" href="css/style.css" />
+		<!--js-->
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<!--rem js-->
+		<script type="text/javascript" src="js/rem.js"></script>
+		<!--mui js-->
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<!--common js-->
+		<script type="text/javascript" src="js/common.js"></script>
+		<!--vue js-->
+		<script type="text/javascript" src="js/vue.min.js"></script>
+	</head>
+	<body>
+		<!--银行卡 -->
+		<div class="center an" style="margin-top: 6.6rem;display: none;">
+			<nav>
+				暂无银行卡信息~
+			</nav>
+			<a href="bindback.html">
+				<button class="garybg mt05">前往添加</button>
+			</a>
+		</div>
+		<div class="backcard white en" id="app" style="display: none;">
+			
+			<nav>
+				<a href="bindback.html"  style="color:white !important">
+					<div class="ft85" v-text="list.bank_name"></div>
+					<nav>储蓄卡</nav>
+					<div class="ft1 mt1" v-text="list.bank_code"></div>
+				</a>
+			</nav>
+			
+		</div>
+		<script>
+			$(function() {
+				uid  = article.getUserId()
+				/*背景色*/
+		      	$("html").addClass("whitebg");
+		      	$("body").addClass("whitebg");
+				//实例化vue
+				vue = new Vue({
+					el: '#app',
+					data: {
+						list: [],
+					},
+					methods: {
+						getData: function() {
+							dataRequest.method("/api/member/bindBank", {
+								'uid': uid,
+							}, "get", function(res) {
+								if(res.code == 200) {
+									vue.list = res.result
+									
+									if(res.result){
+										var bank_code= res.result.bank_code
+										if(bank_code.length <= 16) {
+											var name = bank_code.substr(0, 12);
+											var lname= bank_code.replace(name, "************");
+										} else {
+											var name = bank_code.substr(0, 15);
+											var lname= bank_code.replace(name, "***************");
+										}
+										vue.list.bank_code = lname
+										$(".en").show()
+									    $(".an").hide()
+									}else{
+										$(".an").show()
+									    $(".en").hide()
+									}
+									
+								}
+							})
+						}
+					}
+				})
+				vue.getData()
+			})
+		</script>
+	</body>
+</html>
+       

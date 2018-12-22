@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>个人主页</title>
+		<!--mui样式-->
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<!--公用样式样式-->
+		<link rel="stylesheet" href="css/comment.css" />
+		<!--页面样式-->
+		<link rel="stylesheet" href="css/style.css" />
+		<!--js-->
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<!--rem js-->
+		<script type="text/javascript" src="js/rem.js"></script>
+		<!--mui js-->
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<!--common js-->
+		<script type="text/javascript" src="js/common.js"></script>
+		<!--vue js-->
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<style>
+			img{
+				object-fit: cover;
+			}
+			.href{
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="clearfix">
+			<a href="download.html">
+				<img src="images/down_05.png" class="fl logo" />
+				<img src="images/leftnext.png" class="fr go red" />
+				<span class="fr" style="margin-top: 0.6rem;">免费下载</span>
+			</a>
+		</header>
+		<div id="app" class="href">
+			<div class="per-top">
+				<img :src="url+arr.member_cover" v-if="arr.member_cover" />
+				<img src="images/article_02.png" v-else />
+			</div>
+			<div class="per-head href">
+				<nav class="clearfix">
+					<img :src="url+arr.member_pic" alt="" class="fl" v-if="arr.member_pic" />
+					<img src="images/carre.png" v-else />
+					<div class="fr mt1">
+						<div class="ft1 bold" v-text="arr.member_nickname" ></div>
+						<div>
+							<span v-text="arr.member_likeCount" v-if="arr.member_likeCount">0</span>
+							<span v-else>0</span>
+							<span  class="gary">关注</span>
+							<span class="ml3" v-text="arr.member_fanCount" v-if="arr.member_fanCount">0</span>
+							<span v-else>0</span>
+							<span class="gary">粉丝</span>
+						</div>
+						<div class="per-sign ft4 mt05">
+							<span v-text="arr.member_address" v-if="arr.member_address"></span>
+							<span  v-else>北京</span>
+							<span v-text="arr.member_age" v-if="arr.member_age"></span>
+							<span  v-else>90后</span>
+						</div>
+					</div>
+				</nav>
+				<div class="per-ms ft75 mt05" v-text="arr.member_signature">
+				</div>
+				<p>写了<span v-text="arr.member_fontCount">0</span>字，获得了<span v-text="arr.member_loveCount">0</span>个喜欢</p>
+				<div class="clearfix mt05">
+					<button type="button" class="redbg white">
+					     <img src="images/article_05.png" alt="" />
+					     <span>加关注</span>
+					</button>
+					<button type="button" class="red">
+					     <img src="images/article_07.png" alt="" />
+					     <span>写留言</span>
+					</button>
+					<button type="button">
+					     <img src="images/article_09.png" alt="" />
+					</button>
+				</div>
+			</div>
+			<div class="per-list">
+				<div class="per-list-title clearfix">
+					<span class="red fl">文章 （<span v-text="arr.member_articleCount" v-if="arr.member_articleCount"></span><span v-else>0</span>）</span>
+					<select name="" class="gary fr">
+						<option value="">最新文章</option>
+					</select>
+				</div>
+				<ul>
+					<li class="clearfix" v-for="item in list">
+					    <div class="in_per_lf fl">
+					    	<p v-text="item.articles_times"></p>
+					    	<div class="mt05" v-text="item.articles_content"></div>
+					    	<nav class="clearfix gary mt05 ft5">
+					    		<img src="images/search-icon_03.png" alt="" />
+					    		<span v-text="item.articles_read">0</span>
+					    		<img src="images/search-icon_05.png" alt="" />
+					    		<span v-text="item.articles_commentCount">0</span>
+					    		<img src="images/search-icon_07.png" alt="" />
+					    		<span v-text="item.articles_loveCount">0</span>
+					    	</nav>
+					    </div>
+					    <div class="in_per_rt fr">
+					    	<img :src="pic" class="fr" v-if="item.articles_picCount > 0 && index <= 0" v-for="(pic, index) in item.articles_pic" />
+					    </div>
+					</li>
+				</ul>
+			</div>
+			<div class="height"></div>
+			<div class="down whitebg">
+				<button class="redbg white bor0">下载APP，探索未知的世界</button>
+			</div>
+		</div>
+		<script>
+			$(function() {
+				//实例化vue
+				vue = new Vue({
+					el: '#app',
+					data: {
+						list: [],
+						arr:[]
+					},
+					methods: {
+						getData: function() { //我的文章
+							var uid   = getParameterByName('uid')
+							var reuid = getParameterByName('reuid')
+                            if(!uid){
+	                          	$url = window.location.host
+	                          	location.href = "http://"+$url
+                            }
+							dataRequest.method("/api/member/myMain", {
+								'uid': uid,
+								'reuid':reuid
+							}, "post", function(res) {
+								if(res.code == 200) {
+									vue.list = res.result
+									vue.arr  = res.arr
+								}
+							})
+
+						}
+
+					}
+				})
+				vue.getData()
+
+			})
+		</script>
+		<script>
+			//背景
+			$("body").addClass("whitebg");
+			$("html").addClass("whitebg");
+			$(function(){
+				$(".in_per_lf").each(function(i){
+					var perli = $(this).next().children().attr("src")
+					if(perli==undefined){
+						$(this).css("width","100%")
+					}else{
+						$(this).css("width","60%")
+					}
+				})
+		    })
+			$(document).on('click','.href',function(){
+				window.location.href = "download.html"
+			})
+		</script>
+	</body>
+</html>

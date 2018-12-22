@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:minWidth="300dp">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="#fff"
+            android:minWidth="300dp"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_10">
+
+        <ImageView
+                android:id="@+id/mIvArticleAdmireClose"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:padding="10dp"
+                android:src="@drawable/img_close_icon"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableRight="@drawable/img_tang_icon"
+                android:drawablePadding="@dimen/dp_10"
+                android:text="给作者送糖"
+                android:textColor="@color/blackTextColor"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/mClArticleAdmireTangContainer"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="@dimen/dp_10"
+                android:paddingLeft="20dp"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingRight="20dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:paddingBottom="@dimen/dp_10">
+
+            <CheckedTextView
+                    android:id="@+id/mCTVAdmireOne"
+                    style="@style/style_ctv_admire"
+                    android:text="2颗"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/mCTVAdmireTwo"/>
+
+            <CheckedTextView
+                    android:id="@+id/mCTVAdmireTwo"
+                    style="@style/style_ctv_admire"
+                    android:text="5颗"
+                    app:layout_constraintLeft_toRightOf="@id/mCTVAdmireOne"
+                    app:layout_constraintRight_toLeftOf="@id/mCTVAdmireThree"/>
+
+            <CheckedTextView
+                    android:id="@+id/mCTVAdmireThree"
+                    style="@style/style_ctv_admire"
+                    android:layout_width="0dp"
+                    android:text="10颗"
+                    app:layout_constraintLeft_toRightOf="@id/mCTVAdmireTwo"
+                    app:layout_constraintRight_toRightOf="parent"/>
+
+
+            <CheckedTextView
+                    android:id="@+id/mCTVAdmireFour"
+                    style="@style/style_ctv_admire"
+                    android:text="20颗"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/mCTVAdmireFive"
+                    app:layout_constraintTop_toBottomOf="@id/mCTVAdmireOne"/>
+
+            <CheckedTextView
+                    android:id="@+id/mCTVAdmireFive"
+                    style="@style/style_ctv_admire"
+                    android:text="50颗"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintLeft_toRightOf="@id/mCTVAdmireFour"
+                    app:layout_constraintRight_toLeftOf="@id/mCTVAdmireSix"
+                    app:layout_constraintTop_toBottomOf="@id/mCTVAdmireTwo"/>
+
+            <EditText
+                    android:id="@+id/mCTVAdmireSix"
+                    style="@style/style_ctv_admire"
+                    android:hint="自定义"
+                    android:textColorHint="@color/blackTextColor"
+                    android:textSize="@dimen/sp_12"
+                    android:inputType="number"
+                    android:layout_marginTop="20dp"
+                    android:gravity="start"
+                    android:maxLength="5"
+                    android:digits="1234567890"
+                    android:background="@drawable/select_et_bg"
+                    app:layout_constraintLeft_toRightOf="@id/mCTVAdmireFive"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mCTVAdmireThree"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <EditText
+                android:id="@+id/mEtArticleAdmireLeaveMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/shape_tv_bg_7"
+                android:hint="留言："
+                android:padding="@dimen/dp_10"
+                android:maxLength="100"
+                android:textColor="@color/blackTextColor"
+                android:textColorHint="@color/blackTextColor"
+                android:textSize="@dimen/sp_14"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_10">
+
+            <TextView
+                    android:id="@+id/mTvArticleAdmireCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:text="￥0"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:text="使用书币支付"
+                    android:textColor="@color/grayTextColor"
+                    android:textSize="12sp"/>
+        </LinearLayout>
+
+        <Button
+                android:id="@+id/mBtArticleAdmireUserAdmire"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shape_bt_bg_1"
+                android:text="立即赞赏"
+                android:textColor="#fff"
+                android:textSize="@dimen/sp_16"/>
+
+    </LinearLayout>
+
+
+    <ImageView
+            android:id="@+id/mIvArticleAdmireUserInfoFace"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/shape_iv_bg_1"
+            android:padding="1dp"
+            android:src="@drawable/img_glide_circle_load_default"/>
+
+</FrameLayout>

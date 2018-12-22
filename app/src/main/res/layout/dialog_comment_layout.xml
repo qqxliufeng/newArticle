@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="#fff"
+              android:paddingLeft="@dimen/dp_10"
+              android:paddingRight="@dimen/dp_10"
+              android:paddingTop="2dp"
+              android:paddingBottom="2dp">
+
+    <EditText
+            android:id="@+id/mEtArticleCommentContent"
+            android:layout_width="0dp" android:layout_height="40dp"
+            android:layout_weight="5"
+            android:paddingLeft="@dimen/dp_10"
+            android:drawablePadding="@dimen/dp_10"
+            android:hint="写下你的评论"
+            android:textSize="@dimen/sp_14"
+            android:drawableLeft="@drawable/img_gray_write_icon"
+            android:background="@drawable/shape_et_bg1"/>
+
+    <Button
+            android:id="@+id/mTvArticleCommentSubmit"
+            android:layout_width="0dp" android:layout_height="wrap_content"
+            android:text="发表"
+            android:layout_weight="1"
+            android:textSize="@dimen/sp_16"
+            android:textColor="@color/colorAccent"
+            android:background="@null"/>
+
+
+</LinearLayout>

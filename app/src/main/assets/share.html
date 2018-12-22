@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html style="overflow: scroll;">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>分享</title>
+		<!--mui样式-->
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<!--公用样式样式-->
+		<link rel="stylesheet" href="css/comment.css" />
+		<!--页面样式-->
+		<link rel="stylesheet" href="css/style.css" />
+		<!--js-->
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<!--rem js-->
+		<script type="text/javascript" src="js/rem.js"></script>
+		<!--mui js-->
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<!--common js-->
+		<script type="text/javascript" src="js/common.js"></script>
+		<!--vue js-->
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<style>
+			img {
+				width: 100%;
+				object-fit: cover;
+			}
+		</style>
+	</head>
+
+	<body style="overflow: scroll;">
+		<!--分享-->
+		<header class="clearfix">
+			<a href="download.html">
+				<img src="images/down_05.png" class="fl logo" />
+				<img src="images/leftnext.png" class="fr go red" />
+				<span class="fr" style="margin-top: 0.6rem;">免费下载</span>
+			</a>
+		</header>
+		<div class="share" id="app">
+			<div>《<span v-text="list.articles_title" style="font-weight: bold;"></span>》</div>
+			<nav class="share-au clearfix mt05">
+				<img :src="url+list.articles_userData.member_pic" v-if="list.articles_userData.member_pic" class="fl" />
+				<img src="images/carre.png" v-else class="fl" />
+				<span class="fl ml3 mt1" v-text="list.articles_userData.member_nickname"></span>
+			</nav>
+			<div class="s-sign ft5" style="margin-top: 0.6rem;">
+				<span class="red" v-text="list.articles_tags"></span>
+				<span class="gary ml3" v-text="list.articles_times"></span>
+			</div>
+			<div v-html="list.articles_content"></div>
+			<a href="download.html">
+				<div class="s-more center">
+					<div>
+						<img src="images/more_07.png" alt="" />
+					</div>
+					<button type="button" class="redbg white">打开APP，阅读文章</button>
+				</div>
+			</a>
+		</div>
+		<script>
+			/*背景色*/
+			$("html").addClass("whitebg");
+			$("body").addClass("whitebg");
+			$(function() {
+				//实例化vue
+				vue = new Vue({
+					el: '#app',
+					data: {
+						list: [],
+					},
+					methods: {
+						getData: function() { //我的文章
+							var aid = getParameterByName('theme')
+                            if(!aid){
+	                          	$url = window.location.host
+	                          	location.href = "http://"+$url
+                            }
+							dataRequest.method("/api/article/articleDetail", {
+								'aid': aid,
+							}, "post", function(res) {
+								if(res.code == 200) {
+									vue.list = res.result
+								}
+							})
+
+						}
+
+					}
+				})
+				vue.getData()
+
+			})
+		</script>
+
+	</body>
+
+</html>

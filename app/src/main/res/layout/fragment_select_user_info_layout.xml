@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#fff"
+              android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/mTvSelectUserInfoJump"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:gravity="center_vertical|right"
+            android:padding="@dimen/dp_10"
+            android:text="跳过"
+            android:textColor="@color/grayTextColor"
+            android:textSize="@dimen/sp_16"/>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:text="开启个性化定制"
+            android:textColor="@color/blackTextColor"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="更好的推荐适合您的内容"
+            android:textColor="@color/grayTextColor"
+            android:textSize="@dimen/sp_16"/>
+
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="30dp">
+
+        <EditText
+                android:id="@+id/mEtLoginUserPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:focusable="false"
+                android:hint="选择你的性别"
+                android:paddingBottom="20dp"
+                android:textSize="@dimen/sp_14"/>
+
+        <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/dp_10"
+                android:orientation="horizontal">
+
+            <RadioButton
+                    android:id="@+id/mRbSelectUserInfoSexWoman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:text="女"/>
+
+            <RadioButton
+                    android:id="@+id/mRbSelectUserInfoSexMan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="男"/>
+
+        </RadioGroup>
+
+    </FrameLayout>
+
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp">
+
+        <EditText
+                android:id="@+id/mEtLoginUserVerCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:focusable="false"
+                android:hint="选择你的生日"
+                android:inputType="number"
+                android:paddingBottom="20dp"
+                android:textSize="@dimen/sp_14"/>
+
+        <TextView
+                android:id="@+id/mTvSelectUserInfoAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_10"
+                android:gravity="right|center_vertical"
+                android:text="2018-10-11"
+                android:textColor="@color/blackTextColor"
+                android:textSize="@dimen/sp_16"/>
+
+    </FrameLayout>
+
+
+    <Button
+            android:id="@+id/mBtSelectUserInfoNextStep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/shape_bt_bg_1"
+            android:text="下一步"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp_16"/>
+
+    <TextView
+            android:id="@+id/mTvSelectUserInfoLogin"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:textColor="#80A1D3"
+            android:padding="@dimen/dp_10"
+            android:gravity="center"
+            android:text="已有账号，登录"/>
+
+</LinearLayout>

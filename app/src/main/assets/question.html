@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>充值问题</title>
+		<!--mui样式-->
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<!--公用样式样式-->
+		<link rel="stylesheet" href="css/comment.css" />
+		<!--页面样式-->
+		<link rel="stylesheet" href="css/style.css" />
+		<!--js-->
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+		<!--rem js-->
+		<script type="text/javascript" src="js/rem.js" ></script>
+	</head>
+	<body>
+		<!--充值问题 -->
+		<div class="question">
+			<form action="" method="post">
+			     <p>问题和意见</p>
+				 <textarea placeholder="请留下您宝贵的意见。（100字以内）"></textarea>
+				 <p>若反馈充值未到账，请上传充值结果截图（如成功扣费的短信、苹果的收据邮件截图等）</p>
+				 <ul class="clearfix whitebg">
+				 	<li><img src="images/add_03.png"></li>
+				 	<li>
+			 			<img src="images/add_05.png" class="on">
+			 		    <input type="file" style="display: none;" class="on-next"/>
+				 	</li>
+				 </ul>
+				 <p>联系方式（选填）</p>
+				 <input type="text" placeholder="微信/qq/邮箱"/>
+				 <button type="button" class="redbg white">提交反馈</button>
+			</form>
+		</div>
+		<script>
+			$(".on").click(function(){
+				$(".on-next").click();
+			})
+		</script>
+	</body>
+</html>

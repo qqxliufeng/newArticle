@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>投稿</title>
+		<!--mui样式-->
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<!--公用样式样式-->
+		<link rel="stylesheet" href="css/comment.css" />
+		<!--页面样式-->
+		<link rel="stylesheet" href="css/style.css" />
+		<!--js-->
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<!--rem js-->
+		<script type="text/javascript" src="js/rem.js"></script>
+		<!--mui js-->
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<!--common js-->
+		<script type="text/javascript" src="js/common.js"></script>
+		<!--vue js-->
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<style type="text/css">
+			img {
+				object-fit: cover;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<div class="collect-none center" v-show=" list == '' " style="display: none;">
+				<img src="images/collect.png" />
+				<p>您还没有任何文章信息哦~</p>
+			</div>
+			<!--投稿 -->
+			<div class="like whitebg" style="display: none;" v-show=" list != '' ">
+				<ul>
+					<li class="clearfix" v-for="item in list" onclick="jumpDet(this)">
+						<input type="hidden" :value="item.articles_id" />
+						<input type="hidden" :value="item.articles_title" />
+						<input type="hidden" :value="item.articles_contentd" />
+						<div class="fl">
+							<div>
+								<span class="gary" v-text="item.articles_times"></span>
+							</div>
+							<nav class="ft8 mt05" v-text="item.articles_title"></nav>
+							<div class="clearfix gary mt05">
+								<div class="fl">
+									<img src="images/search-icon_03.png" />
+									<span class="ft55" v-text="item.articles_read">0</span>
+								</div>
+								<div class="fl">
+									<img src="images/search-icon_05.png" />
+									<span class="ft55" v-text="item.articles_commentCount">0</span>
+								</div>
+								<div class="fl">
+									<img src="images/search-icon_07.png" />
+									<span class="ft55" v-text="item.articles_loveCount">0</span>
+								</div>
+							</div>
+						</div>
+
+						<img :src="pic" class="fr" v-if="item.articles_picCount > 0 && index <= 0" v-for="(pic, index) in item.articles_pic" />
+
+					</li>
+					<div class="loadMore animate" style="margin-top: 0.2rem;clear: both;">
+						<img src="images/loading@2x.png">加载更多
+					</div>
+				</ul>
+			</div>
+		</div>
+		<script id="list-template" type="text/html">
+			{{each items as item index}}
+			<li class="clearfix" v-for="item in list" onclick="jumpDet(this)">
+				<input type="hidden" value="{{item.articles_id}}" />
+				<input type="hidden" value="{{item.articles_title}}" />
+				<input type="hidden" value="{{item.articles_contentd}}" />
+				<div class="fl">
+					<div>
+						<span class="gary">{{item.articles_times}}</span>
+					</div>
+					<nav class="ft8 mt05">{{item.articles_title}}</nav>
+					<div class="clearfix gary mt05">
+						<div class="fl">
+							<img src="images/search-icon_03.png" />
+							<span class="ft55">{{item.articles_read}}</span>
+						</div>
+						<div class="fl">
+							<img src="images/search-icon_05.png" />
+							<span class="ft55">{{item.articles_commentCount}}</span>
+						</div>
+						<div class="fl">
+							<img src="images/search-icon_07.png" />
+							<span class="ft55">{{item.articles_loveCount}}</span>
+						</div>
+					</div>
+				</div>
+
+				{{each item.articles_pic as pic key}} {{if item.articles_picCount > 0 && key
+				<=0 }} <img src="{{pic}}" class="fr" /> {{/if}} {{/each}}
+
+			</li>
+			{{/each}}
+		</script>
+		<script>
+			$(function() {
+				//获取webview.js  返回的用户ID
+				var uid  = article.getUserId()
+				//实例化vue
+				vue = new Vue({
+					el: '#app',
+					data: {
+						list: [],
+					},
+					methods: {
+						getData: function() { //我的文章 
+							var Type = article.getArticleType()
+							switch(Type) {
+								case 6:
+									var type = 'myLove';
+									break;
+								case 7:
+									var type = 'myCollect';
+									break;
+							}
+							dataRequest.method("/api/member/" + type, {
+								'uid': uid,
+							}, "post", function(res) {
+
+								if(res.code == 200) {
+									vue.list = res.result
+									setTimeout(function() {
+										//上拉加载
+										data_lod(res.arr, '/api/member/' + type, {
+											'uid': uid,
+										})
+									}, 5)
+								} else {
+									data_lod(0, '/api/member/' + type, {
+										'uid': uid,
+									})
+								}
+
+							})
+
+						}
+
+					}
+				})
+				vue.getData()
+
+			})
+
+			function jumpDet(obj) {
+				var aid = $(obj).children().val()
+				var title = $(obj).children().next().val()
+				var content = $(obj).children().next().next().val()
+				article.jump(article.getArticleType(), aid, title, content)
+			}
+		</script>
+
+	</body>
+
+</html>

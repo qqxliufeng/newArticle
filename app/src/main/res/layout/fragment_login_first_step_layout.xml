@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:background="#fff"
+                  android:orientation="vertical">
+        <include layout="@layout/layout_pre_step"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:text="登录后更精彩"
+                android:textColor="@color/blackTextColor"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+        <EditText
+                android:id="@+id/mEtLoginUserPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:hint="请输入手机号"
+                android:paddingBottom="20dp"
+                android:textSize="@dimen/sp_14"/>
+
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp">
+
+            <EditText
+                    android:id="@+id/mEtLoginUserVerCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入验证码"
+                    android:inputType="number"
+                    android:paddingBottom="20dp"
+                    android:textSize="@dimen/sp_14"/>
+
+            <com.android.ql.lf.baselibaray.ui.widgets.CountDownTextView
+                    android:id="@+id/mTvLoginUserVerCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:gravity="right|center_vertical"
+                    android:text="获取验证码"
+                    android:textColor="@color/blackTextColor"
+                    android:textSize="@dimen/sp_16"/>
+
+        </FrameLayout>
+
+
+        <Button
+                android:id="@+id/mBtFirstStepLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/shape_bt_bg_1"
+                android:text="确定"
+                android:textColor="#fff"
+                android:textSize="@dimen/sp_16"/>
+
+        <TextView
+                android:id="@+id/mLlLoginFirstStepForPassword"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:textColor="@color/colorAccent"
+                  android:padding="@dimen/dp_10"
+                  android:gravity="center"
+                  android:text="密码登录"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:layout_alignParentBottom="true"
+                  android:paddingBottom="30dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:text="— 第三方登录 —"
+                  android:gravity="center"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginTop="20dp">
+            <LinearLayout
+                    android:id="@+id/mLlLoginFirstStepForQQ"
+                    android:layout_width="0dp" android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                          android:text="QQ"
+                          android:drawablePadding="@dimen/dp_10"
+                          android:gravity="center"
+                          android:drawableLeft="@drawable/img_login_qq_icon"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:id="@+id/mLlLoginFirstStepForWX"
+                    android:layout_width="0dp" android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                          android:text="微信"
+                          android:drawablePadding="@dimen/dp_10"
+                          android:gravity="center"
+                          android:drawableLeft="@drawable/img_login_wx_icon"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:id="@+id/mLlLoginFirstStepForWB"
+                    android:layout_width="0dp" android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                          android:text="微博"
+                          android:drawablePadding="@dimen/dp_10"
+                          android:gravity="center"
+                          android:drawableLeft="@drawable/img_login_wb_icon"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

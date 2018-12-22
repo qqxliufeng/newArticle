@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/mTlArticleWebViewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff">
+
+        <ImageView
+            android:id="@+id/mIvArticleWebViewBack"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp" />
+
+        <ImageView
+            android:id="@+id/mIvArticleWebViewClose"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:padding="20dp"
+            android:src="@drawable/img_close_icon" />
+
+        <TextView
+            android:id="@+id/mTvArticleWebViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:textColor="@color/blackTextColor"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/mTvArticleWebViewAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提交"
+            android:layout_gravity="right"
+            android:visibility="gone"
+            android:textSize="@dimen/sp_16"
+            android:layout_marginRight="@dimen/dp_10"
+            android:textColor="@color/colorAccent"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ProgressBar
+        android:id="@+id/mPbArticleProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:progressTint="@color/colorAccent" />
+
+    <com.android.ql.lf.article.ui.widgets.MyMeasureLinearLayout
+        android:id="@+id/mMLlWebViewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <WebView
+            android:id="@+id/mWVArticleWebViewContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.android.ql.lf.article.ui.widgets.MyMeasureLinearLayout>
+
+</LinearLayout>

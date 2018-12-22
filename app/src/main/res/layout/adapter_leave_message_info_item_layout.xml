@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="#fff"
+              android:paddingLeft="@dimen/dp_10"
+              android:paddingRight="@dimen/dp_10"
+              android:paddingTop="@dimen/dp_10">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <ImageView android:layout_width="@dimen/dp_40" android:layout_height="@dimen/dp_40"
+                   android:id="@+id/mIvLeaveMessageItemUserFace"
+                   android:src="@drawable/img_glide_circle_load_default"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:layout_centerVertical="true"
+                  tools:text="娟娟新月"
+                  android:id="@+id/mTvLeaveMessageItemUserNickName"
+                  android:layout_toRightOf="@id/mIvLeaveMessageItemUserFace"
+                  android:textColor="@android:color/holo_blue_dark"
+                  android:layout_marginLeft="@dimen/dp_10"
+        />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:textColor="@color/blackTextColor"
+                  android:layout_toRightOf="@id/mTvLeaveMessageItemUserNickName"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="@dimen/dp_10"
+                  android:text="给你留言"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:background="@drawable/shape_tv_bg_7"
+                  android:text="回复"
+                  android:id="@+id/mTvLeaveMessageItemReply"
+                  android:layout_alignParentRight="true"
+                  android:textColor="@color/normalTextColor"
+                  android:layout_centerVertical="true"
+                  android:paddingLeft="@dimen/dp_10"
+                  android:paddingRight="@dimen/dp_10"
+                  android:paddingBottom="5dp"
+                  android:paddingTop="5dp"
+                  android:textSize="@dimen/sp_12"
+        />
+    </RelativeLayout>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:background="@drawable/shape_tv_bg_7"
+              android:layout_marginTop="20dp"
+              tools:text="关于此的部分其实也好写"
+              android:id="@+id/mTvLeaveMessageItemContent"
+              android:textColor="@color/blackTextColor"
+              android:padding="@dimen/dp_10"/>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:textColor="@color/grayTextColor"
+              tools:text="2018-11-7"
+              android:id="@+id/mTvLeaveMessageItemTime"
+              android:textSize="@dimen/sp_12"
+              android:layout_marginTop="20dp"/>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp"
+          android:background="@color/lineColor"
+          android:layout_marginTop="@dimen/dp_10"/>
+
+</LinearLayout>

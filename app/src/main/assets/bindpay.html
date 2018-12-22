@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>绑定支付宝</title>
+		<!--mui样式-->
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<!--公用样式样式-->
+		<link rel="stylesheet" href="css/comment.css" />
+		<!--页面样式-->
+		<link rel="stylesheet" href="css/style.css" />
+		<!--js-->
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<!--rem js-->
+		<script type="text/javascript" src="js/rem.js"></script>
+		<!--mui js-->
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<!--common js-->
+		<script type="text/javascript" src="js/common.js"></script>
+		<!--vue js-->
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<style>
+			.bindpay button{
+				position: fixed;
+				left:5%;
+				width: 90%;
+				height: 2rem;
+				border-radius: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			 <div class="alipay whitebg" >
+			 		<div class="clearfix">
+			 			<label class="fl">真实姓名</label>
+			 			<span class="fr right" id="username" v-text="alipayname">姓名</span>
+			 		</div>
+			 		<div class="clearfix" style="margin-bottom: 2.5rem;">
+			 			<label class="fl">支付宝</label>
+			 			<span class="fr right" id="user" v-text="alipay">账号</span>
+			 		</div>
+			 		<div style="width: 100%;">
+			 		   <button type="button" onclick="sub()">确定</button>
+			 		</div>
+			 </div>
+			 <!--编辑-->
+			 <div class="edit-o windows hide">
+			 	<div class="edit whitebg">
+			 			<div class="clearfix">
+			 				<img src="images/write_03.png" class="fl"/>
+			 				<input placeholder="请输入内容" class="fr"id="chabge-o"/>
+			 			</div>
+			 			<nav class="clearfix">
+			 				<button type="button" class="fl close">取消</button>
+			 				<button type="button" class="red fr sureone" onclick="username()">保存</button>
+			 			</nav>
+			 	</div>
+			 </div>
+			 <div class="edit-t windows hide">
+			 	<div class="edit whitebg">
+			 			<div class="clearfix">
+			 				<img src="images/write_03.png" class="fl"/>
+			 				<input placeholder="请输入内容" class="fr" id="chabge-t"/>
+			 			</div>
+			 			<nav class="clearfix">
+			 				<button type="button" class="fl close">取消</button>
+			 				<button type="button" class="red fr suretwo" onclick="user()">保存</button>
+			 			</nav>
+			 	</div>
+		 	</div>
+		    <script>
+			$(function() {
+//				uid  = 650
+				uid  = article.getUserId()
+				/*背景色*/
+		      	$("html").addClass("whitebg");
+		      	$("body").addClass("whitebg");
+				//实例化vue
+				vue = new Vue({
+					el: '#app',
+					data: {
+						alipayname: "姓名",
+						alipay: "账号",
+					},
+					methods: {
+						getData: function() {
+							dataRequest.method("/api/member/bindAlipay", {
+								'uid': uid
+							}, "get", function(res) {
+								if(res.code == 200) {
+									if(res.result.member_alipayname){
+										vue.alipayname = res.result.member_alipayname
+									}
+									if(res.result.member_alipay){
+										vue.alipay = res.result.member_alipay
+									}
+									
+								}
+							})
+						}
+					}
+				})
+				vue.getData()
+			})
+		 </script>
+	     <script>
+	     	var uid = 655;
+	     	function username(){
+	     		var val = $("#chabge-o").val();
+					if(val){
+						dataRequest.method("/api/member/bindAlipay", {
+							'uid': uid,
+							'name':val,
+						}, "post", function(res) {
+							if(res.code == 200){
+								$("#chabge-o").val("");
+								mui.toast('修改成功')
+							}else{
+								mui.toast(res.msg)
+							}
+						})
+						$("#username").html(val);
+					}
+					
+		     		$(".edit-o").hide();
+	     	}
+	     	function user(){
+	     		var val = $("#chabge-t").val();
+				if(val){
+					dataRequest.method("/api/member/bindAlipay", {
+						'uid': uid,
+						'account':val,
+					}, "post", function(res) {
+						if(res.code == 200){
+							$("#chabge-t").val("");
+							mui.toast('修改成功')
+						}else{
+							mui.toast(res.msg)
+						}
+					})
+					$("#user").html(val);
+				}
+	     		$(".edit-t").hide();
+	     	}
+	     	
+	     	function sub(){
+	     		var username = $("#username").text()
+	     		var user     = $("#user").text()
+	     		if(username.length <= 0 || username == '姓名'){
+	     			mui.toast('请填写真实姓名')
+	     			return false;
+	     		}
+	     		if(user.length <= 0 || user == '账号'){
+	     			mui.toast('请填写支付宝账号')
+	     			return false;
+	     		}
+	     		window.location.href = "wallet.html"
+	     	}
+	     	$(document).on('click','#username',function(){
+	     		$(".edit-o").show();
+	     	})
+	     	
+	     	$(document).on('click','#user',function(){
+	     		$(".edit-t").show();
+	     	})
+	     	
+	     	$(document).on('click',".close",function(){
+	     		$(".windows").hide();
+	     	})
+
+	     	
+	     </script>
+	</body>
+</html>
+    

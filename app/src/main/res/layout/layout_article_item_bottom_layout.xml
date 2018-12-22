@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10">
+
+    <TextView
+            android:id="@+id/mTvArticleItemAuthName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="middle"
+            android:maxWidth="100dp"
+            android:singleLine="true"
+            tools:text="翰墨诗韵翰墨诗韵翰墨诗韵翰墨诗韵翰墨诗韵翰墨诗韵翰墨诗韵翰墨诗韵翰墨诗韵"
+            android:textColor="@color/grayTextColor"
+            android:textSize="@dimen/sp_12"/>
+
+    <TextView
+            android:id="@+id/mTvArticleItemCommentCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_toRightOf="@id/mTvArticleItemAuthName"
+            android:drawableLeft="@drawable/img_article_item_comment_icon"
+            android:drawablePadding="5dp"
+            tools:text="20"
+            android:textColor="@color/grayTextColor"
+            android:textSize="@dimen/sp_12"/>
+
+    <TextView
+            android:id="@+id/mTvArticleItemLikeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_toRightOf="@id/mTvArticleItemCommentCount"
+            android:drawableLeft="@drawable/img_article_item_like_icon"
+            android:drawablePadding="5dp"
+            tools:text="20"
+            android:textColor="@color/grayTextColor"
+            android:textSize="@dimen/sp_12"/>
+
+    <TextView
+            android:id="@+id/mTvArticleItemPraiseCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_toRightOf="@id/mTvArticleItemLikeCount"
+            android:drawableLeft="@drawable/img_article_item_praise_icon"
+            android:drawablePadding="5dp"
+            tools:text="20"
+            android:textColor="@color/grayTextColor"
+            android:textSize="@dimen/sp_12"/>
+
+    <TextView
+            android:id="@+id/mTvArticleItemType"
+            android:layout_width="120dp"
+            android:singleLine="true"
+            android:gravity="right"
+            android:ellipsize="middle"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            tools:text="上海-民商法-60后"
+            android:textColor="@color/grayTextColor"
+            android:textSize="@dimen/sp_12"/>
+
+</RelativeLayout>

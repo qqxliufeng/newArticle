@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+           android:id="@+id/mIvSelectImageItem"
+           android:orientation="vertical"
+           android:layout_width="100dp"
+           android:layout_height="100dp"
+           android:scaleType="fitXY"
+           android:layout_marginLeft="5dp"
+           android:layout_marginRight="5dp"
+           android:layout_marginTop="@dimen/dp_10"
+           android:layout_marginBottom="@dimen/dp_10"
+           android:src="@drawable/img_select_img_icon">
+
+</ImageView>

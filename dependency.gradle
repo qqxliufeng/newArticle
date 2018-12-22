@@ -1,0 +1,117 @@
+def daggerVersion = "2.12"
+def daggerCompiler = "2.12"
+
+def retrofit2Version = "2.3.0"
+def retrofit2ConverterGson = "2.3.0"
+def retrofit2AdapterRxJava = "2.3.0"
+def retrofit2ConverterScalars = "2.3.0"
+def okHttp3LoggingInterceptor = "3.9.0"
+
+def rxAndroid = "1.2.1"
+def rxJava = "1.2.9"
+
+def appcompatV7 = "27.1.1"
+def design = "27.1.1"
+
+def baseRecyclerViewAdapterHelper = "2.9.41"
+
+def butterKnife = "8.8.1"
+def butterKnifeCompiler = "8.8.1"
+
+def glide = "3.7.0"
+//def glideCompiler = "4.2.0"
+def glideTransformations = "2.0.0"
+def imagePicker = "0.6.1"
+
+def ankoVersion = '0.10.5'
+
+def multidex = "1.0.0"
+
+def permission = "1.2.0"
+
+def matisse = "0.5.1"
+
+def luban = "1.1.7"
+
+def gson = "2.2.4"
+
+def flexbox = "1.0.0"
+
+def rxPermission = "0.10.2"
+
+def constraint = "1.1.0"
+
+def banner = "1.4.10"
+
+ext {
+
+    compileSdkVersion = 26
+    buildToolsVersion = "26.0.2"
+
+    minSdkVersion = 19
+    targetSdkVersion = 23
+
+
+    kotlin = [
+            "kotlin-android"           : "kotlin-android",
+            "kotlin-android-extensions": "kotlin-android-extensions"
+    ]
+
+    dependencies = [
+
+            "libSupportAppcompat"             : "com.android.support:appcompat-v7:${appcompatV7}",
+            "libSupportDesign"                : "com.android.support:design:${design}",
+
+            "libConstraintLayout"             : "androidx.constraintlayout:constraintlayout:${constraint}",
+
+            "libCardview"                     : "com.android.support:cardview-v7:${design}",
+
+            "libRxJava"                       : "io.reactivex:rxjava:${rxJava}",
+            "libRxAndroid"                    : "io.reactivex:rxandroid:${rxAndroid}",
+
+            "libRetrofit"                     : "com.squareup.retrofit2:retrofit:${retrofit2Version}",
+            "libRetrofitConverterGson"        : "com.squareup.retrofit2:converter-gson:${retrofit2ConverterGson}",
+            "libRetrofitAdapterRxJava"        : "com.squareup.retrofit2:adapter-rxjava:${retrofit2AdapterRxJava}",
+            "libRetrofitAdapterScalars"       : "com.squareup.retrofit2:converter-scalars:${retrofit2ConverterScalars}",
+            "libOkHttpLoggingInterceptor"     : "com.squareup.okhttp3:logging-interceptor:${okHttp3LoggingInterceptor}",
+
+            "libDagger"                       : "com.google.dagger:dagger:${daggerVersion}",
+            "libDaggerCompiler"               : "com.google.dagger:dagger-compiler:${daggerCompiler}",
+
+            "libBaseRecyclerViewAdapterHelper": "com.github.CymChad:BaseRecyclerViewAdapterHelper:${baseRecyclerViewAdapterHelper}",
+
+            "libButterKnife"                  : "com.jakewharton:butterknife:${butterKnife}",
+            "libButterButterKnifeCompiler"    : "com.jakewharton:butterknife-compiler:${butterKnifeCompiler}",
+
+
+            "libGlide"                        : "com.github.bumptech.glide:glide:${glide}",
+//            "libGlideCompiler"                : "com.github.bumptech.glide:compiler:${glideCompiler}",
+            "libGlideTransformations"         : "jp.wasabeef:glide-transformations:${glideTransformations}",
+
+            "libImagePicker"                  : "com.lzy.widget:imagepicker:${imagePicker}",
+
+
+            "libAnko"                         : "org.jetbrains.anko:anko:$ankoVersion",
+            "libAnkoCommons"                  : "org.jetbrains.anko:anko-commons:$ankoVersion",
+
+            "libMultiDex"                     : "com.android.support:multidex:$multidex",
+
+            "libEasypermissions"              : "pub.devrel:easypermissions:$permission",
+
+            "libMatisse"                      : "com.zhihu.android:matisse:$matisse",
+
+            "libLuban"                        : "top.zibin:Luban:$luban",
+
+            "libGson"                         : "com.google.code.gson:gson:$gson",
+
+            "libFlexBox"                      : "com.google.android:flexbox:$flexbox",
+
+            "libKotlin"                       : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+
+            "libRxPermission"                 : "com.github.tbruyelle:rxpermissions:$rxPermission",
+
+            "libBanner"                       : "com.youth.banner:banner:$banner"
+
+
+    ]
+}

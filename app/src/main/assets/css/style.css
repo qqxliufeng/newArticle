@@ -1,0 +1,875 @@
+.ui-page-login,
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+.mui-content{
+	height: 100%;
+}
+header{
+	padding: 2% 5%;
+	border-bottom: 1px solid #EEEEEE;
+}
+header .logo{
+	width: 4.3rem;
+	height: 2.05rem;
+}
+header .go{
+	width: 0.325rem;
+	height: 0.525rem;
+	margin: 0.8rem 0 0 0.3rem;
+}
+
+/*我的钱包*/
+.wallet{
+	width: 90%;
+	height: 6.1rem;
+	margin: 1rem auto;
+	background: url(../images/code_03.png) no-repeat;
+	background-size: 100%;
+}
+.wallet-01{
+	background: url(../images/code_06.png) no-repeat;
+	background-size: 100%;
+}
+.wallet .fl,.wallet .fr{
+	padding: 1rem;
+}
+.wallet .fl{
+	width: 70%;
+}
+.wallet .fr{
+	width: 30%;
+}
+.wallet button{
+	width: 80%;
+	margin-top: 1.5rem;
+	background: none;
+	border: none;
+	border: 1px solid #FFFFFF;
+	color: #E5E5E5;
+}
+.wallet-list{
+	width: 90%;
+	margin: 1rem auto;
+}
+.wallet-list ul li{
+	width: 100%;
+	padding: 1rem 0;
+	border-bottom: 1px solid #E5E5E5;
+}
+.wallet-list ul li:last-child{
+	border-bottom: 0;
+}
+.wallet-list ul li a{
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+.wallet-icon{
+	width: 0.8rem;
+	height: 0.7rem;
+	margin-top: 0.2rem;
+}
+/*充值内容*/
+.topups-main{
+	position: relative;
+	top: 10%;
+	left: 10%;
+	width: 80%;
+	padding: 3% 3% 5%;
+	border-radius: 10px;
+}
+.topups-main ul{
+	position: relative;
+	left: 15%;
+	width: 70%;
+	margin-top: 1rem;
+}
+.topups-main ul li{
+	width: 40%;
+	height: 1.5rem;
+	line-height: 1.5rem;
+	text-align: center;
+	color: #656565;
+	border: 1px solid #999999;
+	margin: 0.5rem 0;
+	border-radius: 3px;
+}
+.topups-main ul li:nth-child(odd){
+	float: left;
+}
+.topups-main ul li:nth-child(even){
+	float: right;
+}
+.topups-main button{
+	position: relative;
+	top: 10%;
+	left: 10%;
+	width: 80%;
+	height: 2rem;
+	margin-top: 2rem;
+	border-radius: 50px;
+}
+.close{
+	width: 0.775rem;
+	height: 0.775rem;
+}
+/*提现内容*/
+.withdraw-main{
+	position: relative;
+	top: 10%;
+	left: 10%;
+	width: 80%;
+	padding: 3% 0 5%;
+	border-radius: 10px;
+}
+.withdraw-main>nav,
+.withdraw-main>div{
+	padding: 1% 3%;
+}
+.withdraw-main input{
+	width: 90%;
+	border: 0;
+}
+.withdraw-main button{
+	position: relative;
+	top: 10%; 
+	left: 10%;
+	width: 80%;
+	height: 2rem;
+	margin-top: 2rem;
+	border-radius: 50px;
+}
+.withdraw-main img{
+	width: 1rem;
+	height: 1rem;
+}
+.withdraw-main ul li{
+	padding: 2% 3%;
+	margin: 0.5rem 0;
+}
+/*我的收入*/
+.income{
+	width: 100%;
+	height: 9rem;
+	background: url(../images/img.png) no-repeat;
+	background-size: 100%;
+}
+.income>div>div:nth-child(1){
+	color: #FFD8D8;
+}
+.income>div{
+	padding: 3rem 15%;
+}
+.income-list{
+	width: 90%;
+	margin: 1rem auto;
+}
+.income-list ul li{
+	padding: 5% 0;
+	border-bottom: 1px solid #E5E5E5;
+}
+.income-list ul li:last-child{
+	border-bottom: 0;
+}
+/*交易记录*/
+.transaction ul li>div{
+	width: 70%;
+}
+.transaction ul li>nav{
+	width: 30%;
+	text-align: right;
+}
+.transaction ul li{
+	width: 90%;
+	padding: 0.5rem 0;
+	margin: 0.5rem auto;
+	border-bottom: 1px solid #E5E5E5;
+}
+.transaction ul li:last-child{
+	border-bottom: 0;
+}
+/*绑定银行卡*/
+.bindpay{
+	padding: 3%;
+	margin: 0.5rem 0;
+}
+.bindpay label{
+	display: block;
+	width: 30%;
+	height: 2rem;
+	line-height: 2rem;
+}
+.bindpay >div{
+	border-bottom: 1px solid #E5E5E5;
+}
+.bindpay >div:last-child{
+	border-bottom: 0;
+}
+.bindpay span,.bindpay input{
+	display: block;
+	width: 70%;
+	height: 2rem;
+	line-height: 2rem;
+	color: #656565;
+}
+.bindpay input{
+	border: 0;
+}
+.bindpay button{
+	position: fixed;
+	left:5%;
+	bottom: 2rem;
+	width: 90%;
+	height: 2rem;
+	border-radius: 50px;
+}
+/*绑定支付宝*/
+.alipay{
+	padding: 3%;
+	margin: 0.5rem 0;
+}
+.alipay label{
+	display: block;
+	width: 30%;
+	height: 2rem;
+	line-height: 2rem;
+}
+.alipay >div{
+	border-bottom: 1px solid #E5E5E5;
+}
+.alipay >div:last-child{
+	border-bottom: 0;
+}
+.alipay span,.bindpay input{
+	display: block;
+	width: 70%;
+	height: 2rem;
+	line-height: 2rem;
+	color: #656565;
+}
+.alipay input{
+	border: 0;
+}
+.alipay button{
+	position: fixed;
+	width: 50%;
+	height: 2rem;
+	left:25%;
+	margin: 0 auto;
+	border-radius: 5px;
+}
+/*编辑*/
+.edit{
+	position: relative;
+	top: 10%;
+	left: 10%;
+	width: 80%;
+	padding: 5% 0 0;
+}
+.edit>div{
+	width: 60%;
+	margin: auto;
+	border-bottom: 1px solid #E5E5E5;
+}
+.edit>div input{
+	width: 80%;
+	border: 0;
+	height: 2rem;
+}
+.edit>div img{
+	width: 1rem;
+	height: 0.9rem;
+	margin-top: 0.6rem;
+}
+.edit>nav{
+	margin-top: 1rem;
+	border-top: 1px solid #E5E5E5;
+}
+.edit>nav button{
+	width: 50%;
+	height: 2rem;
+	border: 0;
+}
+.backcard{
+	width: 90%;
+	height: 6.2rem;
+	margin: 1rem auto;
+	background: url(../images/back.png);
+	background-size: 100%;
+}
+.backcard>nav{
+	padding: 1rem;
+}
+/*充值问题*/
+.question p{
+	padding: 3%;
+}
+.question textarea{
+	width: 100%;
+	height: 8rem;
+	border: 0;
+	padding: 3%;
+}
+.question ul{
+	padding: 3%;
+}
+.question ul li{
+	position: relative;
+	width: 25%;
+	float: left;
+}
+.question ul li div{
+	position: relative;
+}
+.question ul li img{
+	width: 4.1rem;
+	height: 4.1rem;
+}
+.question ul li div img{
+	width: 4.1rem;
+	height: 4.1rem;
+	display: inline-block;
+}
+.question input[type='text']{
+	width: 97%;
+	height: 2rem;
+	border: 0;
+	padding-left: 3%;
+}
+.question button{
+	position: relative;
+	left: 10%;
+	width: 80%;
+	height: 2rem;
+	border-radius: 50px;
+	margin-top: 3rem;
+}
+/*搜索*/
+.search{
+	width: 90%;
+	height: 2.1rem;
+	margin: 1rem auto;
+	border-radius: 50px;
+}
+.search input{
+	width: 85%;
+	height: 1.5rem;
+	margin-top: 0.3rem;
+	border: 0;
+	/*border-right: 1px solid #E5E5E5;*/
+	background: none;
+	padding-left: 3%;
+}
+.search button{
+	width: 15%;
+	height: 100%;
+	background: none;
+	border: 0;
+	border-bottom-right-radius: 50px;
+	border-top-right-radius: 50px;
+}
+.search button img{
+	width: 0.7rem;
+	height: 0.7rem;
+}
+.hot-title{
+	width: 90%;
+	margin: auto;
+}
+.hot-title img{
+	width: 0.55rem;
+	height: 0.65rem;
+	margin: 0.2rem 0.5rem 0 0;
+}
+.hot ul li{
+	padding: 0.5rem 5%;
+	border-bottom: 1px solid #E5E5E5;
+}
+.hot ul li b{
+	margin-top: 0.1rem;
+}
+.hot ul li div{
+	width: 70%;
+	margin: 0 0.3rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.solution img{
+	width: 5.125rem;
+	height: 5.125rem;
+	margin: 4rem 0 1rem 0;
+}
+.search-ing{
+	border-top: 1px solid #E5E5E5;
+}
+.search-ing>ul li{
+	padding: 0.5rem 5%;
+	border-bottom: 1px solid #E5E5E5;
+}
+.search-ing>ul li img{
+	width: 2.275rem;
+	height: 2.275rem;
+	margin-right: 0.5rem;
+	border-radius: 100%;
+}
+.search-ing>ul li nav{
+	margin-top: 0.6rem;
+}
+.search-title{
+	padding: 0.5rem 5%;
+	border-top: 1px solid #E5E5E5;
+}
+.search-uesr{
+	margin: 0.5rem 0;
+	overflow-x: scroll;
+}
+.search-uesr ul{
+	white-space: nowrap;
+}
+.search-uesr ul a{
+	display: block;
+	width: 25%;
+	display: inline-block;
+    white-space: nowrap;
+}
+.search-uesr ul li{
+	text-align: center;
+    margin-top: 0.5rem;
+}
+.search-uesr ul li img{
+	width: 1.75rem;
+	height: 1.75rem;
+	border-radius: 100%;
+}
+.search-list img{
+	width: 0.6rem;
+	height: 0.55rem;
+	margin: 0 0.2rem;
+}
+.uear-name{
+	margin-right: 0.5rem;
+}
+.search-list ul li{
+	padding: 0.5rem 5%;
+	border-bottom: 1px solid #E5E5E5;
+}
+.search-list ul a li >div{
+	margin: 0.3rem 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+/*账号与安全*/
+.safety{
+	margin-top: 0.7rem;
+	padding: 0.5rem 5%;
+}
+.safety-bind ul li{	
+	padding: 0.5rem 5%;
+	background: #FFFFFF;
+	border-bottom: 1px solid #E5E5E5;
+}
+.safety-bind ul li:last-child{
+	border-bottom: 0;
+}
+.safety-bind ul li img{
+	width: 1.15rem;
+	height: 0.925rem;
+	margin-right: 0.3rem;
+}
+/*身份认证*/
+.authent{
+	padding: 5%;
+}
+.authent div{
+	text-align: center;
+}
+.authent-head img{
+	width: 5.4rem;
+	height: 5.4rem;
+	margin: 1rem 0;
+}
+.authent-card img{
+	width: 12rem;
+	height: 7.3rem;
+	margin: 1rem 0;
+}
+.authent-btn{
+	width: 80%;
+	height: 2rem;
+	line-height: 2rem;
+	margin: 1rem auto;
+	background: #6AC05A;
+	border: #656565;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.authent-btn img{
+	width: 0.775rem;
+	height: 0.725rem;
+}
+.authent ul li{
+	width: 48%;
+	margin-top: 1rem;
+}
+.authent ul li img{
+	width: 100%;
+	height: 5.3rem;
+}
+.recovery ul li{
+	padding: 0.5rem 5%;
+	border-bottom: 1px solid #E5E5E5;
+	
+}
+/*回收站*/
+.recovery ul li div{
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+/*浏览历史*/
+.history li>nav{
+	padding: 0.3rem 5%;
+}
+.history li>div{
+	padding: 1rem 5%;
+	border-bottom: 1px solid #E5E5E5;
+}
+.history li>div>div{
+	width: 70%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+/*关注*/
+.attention-title{
+	padding: 0.3rem 5%;
+}
+.attention img{
+	width: 2.25rem;
+	height: 2.25rem;
+	border-radius: 100%;
+}
+.attention ul{
+	width: 90%;
+	margin: 0 auto;
+}
+.attention ul li{
+	padding: 1rem 0;
+	border-bottom: 1px solid #E5E5E5;
+}
+.attention ul li>div{
+	width: 50%;
+	margin-left: 3%;
+}
+.attention ul li button{
+	width: 25%;
+	color: #989898;
+}
+/*收藏*/
+.collect-none img{
+	width: 7.8rem;
+	height: 7.8rem;
+	margin: 3rem 0 1rem 0;
+}
+.collect ul li{
+	width: 90%;
+	margin: 0 auto;
+	padding: 1rem 0;
+	border-bottom: 1px solid #E5E5E5;
+}
+.collect img,.comment img{
+	width: 2.25rem;
+	height: 2.25rem;
+	border-radius: 100%;
+}
+.collect ul li>div{
+	width: 83%;
+}
+.collect ul li>div >div{
+	margin-bottom: 0.5rem;
+}
+/*评论*/
+.comment{
+	padding: 0 5%;
+}
+.comment ul li{
+	padding: 3% 0;
+}
+.comment nav{
+	padding: 3%;
+	margin: 0.5rem 0;
+	background: #FBFBFB;
+	border: 1px solid #E5E5E5;
+}
+.comment-main {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding: 3%;
+}
+.comment-main textarea{
+	width: 100%;
+	height: 5rem;
+	padding: 3%;
+}
+.comment-main button{
+	border: 1px saddlebrown #FF5163;
+}
+.comment-deta {
+	padding: 5% 0;
+}
+.comment-deta ul li{
+	border: 0 !important;
+	padding: 0.3rem 0 !important;
+}
+.comment-deta-main{
+	width: 90%;
+	margin: 1rem auto;
+}
+.comment-cont{
+	background: #F4F5F9;
+}
+.comment-bot{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 2.5rem;
+	padding: 0.3rem 0;
+}
+.comment-bot img{
+	width: 0.625rem;
+	height: 0.55rem;
+	margin-top: 0.7rem;
+	margin-left: 3%;
+}
+.comment-bot>div{
+	width: 80%;
+	height: 100%;
+	border: 0;
+	margin-left: 3%;
+	background: #F4F5F9;
+	border-radius: 5px;
+}
+.comment-bot input{
+	width: 80%;
+	height: 100%;
+	border: 0;
+	background: none;
+	margin-left: 3%;
+}
+.comment-bot button{
+	width: 15%;
+	margin-top: 0.2rem;
+}
+/*喜欢*/
+.like{
+	padding: 5%;
+}
+.like ul li>img{
+	width: 4.15rem;
+	height: 4.15rem;
+	border-radius: 3px;
+}
+.like ul li div img{
+	width: 0.6rem;
+	width: 0.55rem;
+	margin: 0 0.3rem;
+}
+.like ul li>div{
+	width: 70%;
+}
+.like ul li{
+	padding: 0.5rem 0;
+}
+.like ul a{
+	display: block;
+	border-bottom: 1px solid #E5E5E5;
+}
+.like ul a:last-child{
+	border: 0;
+}
+.like nav{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+/*下载*/
+.download img{
+	width: 100%;
+	margin: 5rem 0;
+}
+.down-btn{
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+}
+.down-btn img{
+	width: 4.3rem;
+	height: 2.05rem;
+}
+.down-btn button{
+	width: 60%;
+	margin: 1rem 0;
+	border-radius: 50px;
+	border: 1px solid #FF5163;
+}
+.down-btn button img{
+	width: 0.975rem;
+	height: 1.125rem;
+	margin: 0 0.3rem;
+	margin-left: 20%;
+}
+/*分享*/
+.share{
+	padding: 3%;
+}
+.share div:first-child{
+	font-size: 1.4rem;
+}
+.share-au img{
+	width: 3rem;
+	height: 3rem;
+	border-radius: 100%;
+}
+.share-au{
+	font-size: 0.75rem;
+}
+.s-sign span:first-child{
+	background: #FFE7EA;
+	padding: 0.2rem 0.5rem 0.1rem;
+	border-radius: 3px;
+}
+.share>img{
+	width: 100%;
+	margin: 0.5rem 0;
+}
+.share-text{
+	font-size: 0.7rem;
+	line-height: 30px;
+	text-indent: 2em;
+}
+.s-more img{
+	width: 1.725rem;
+	height: 1.25rem;
+}
+.s-more button{
+	width: 50%;
+	height: 2rem;
+	margin: 1rem 0;
+	border: 0;
+}
+.withdraw-main input[type="radio"] {
+    width: 0.85rem !important;
+    width: 0.85rem;
+    -webkit-appearance: none;
+    background: url(../images/radio_06.png) no-repeat;
+    vertical-align: middle;
+    background-size: 100%;
+    margin-right: 0.5rem;
+}
+.withdraw-main input[type="radio"]:checked {
+    background: url(../images/radio_03.png) no-repeat;
+    background-size: 100%;
+}
+/*个人主页*/
+.per-top img{
+	width: 100%;
+	height: 7.5rem;
+}
+.per-head{
+	width: 90%;
+	margin: auto;
+	position: relative;
+	margin-top: -1rem;
+	z-index: 99;
+}
+.per-head nav img{
+	width: 5rem;
+	height: 5rem;
+	border: 3px solid #FFFFFF;
+	border-radius: 100%;
+}
+.per-head>nav>div{
+	width: 67%;
+}
+.per-sign span{
+	background: #FFE7EA;
+	color: #FF2741;
+	padding: 1px 0.3rem;
+	margin: 0 0.3rem;
+}
+.per-sign span:first-child{
+	margin-left: 0;
+}
+.per-head button{
+	height: 2rem;
+	border: 1px solid #FF6776;
+	padding: 0 1.5rem !important;
+	margin-left: 0.5rem;
+}
+.per-head button img{
+	width: 0.8rem;
+	height: 0.85rem;
+}
+.per-head button:last-child{
+	padding: 0 0.8rem !important;
+}
+.per-head button:first-child{
+	margin-left: 0;
+}
+.per-list{
+	width: 90%;
+	margin: 0.5rem auto;
+}
+.per-list ul li{
+	margin: 1rem 0;
+	padding-bottom: 0.5rem;
+	border-bottom: 1px solid #E5E5E5;
+}
+.in_per_lf{
+	width: 65%;
+}
+.in_per_rt{
+	width: 35%;
+	text-align: right;
+}
+.in_per_lf img{
+	width: 0.575rem;
+	height: 0.55rem;
+	margin: 0 0.3rem;
+}
+.in_per_rt img{
+	width: 4.15rem;
+	height: 4.15rem;
+	margin-top: 0.6rem;
+}
+.in_per_lf >div{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+.down{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+.down button{
+	position: relative;
+	left: 5%;
+	width: 90%;
+	margin: 0.5rem auto;
+}

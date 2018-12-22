@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>绑定银行卡</title>
+		<!--mui样式-->
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<!--公用样式样式-->
+		<link rel="stylesheet" href="css/comment.css" />
+		<!--选择地址样式-->
+		<link rel="stylesheet" href="css/ydui.css" />
+		<!--页面样式-->
+		<link rel="stylesheet" href="css/style.css" />
+		<!--js-->
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<!--rem js-->
+		<script type="text/javascript" src="js/rem.js"></script>
+		<!--mui js-->
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<!--common js-->
+		<script type="text/javascript" src="js/common.js"></script>
+		<!--vue js-->
+		<script type="text/javascript" src="js/vue.min.js"></script>
+	</head>
+	<body>
+		 <div class="bindpay whitebg" id="app">
+		 		<div class="clearfix">
+		 			<label class="fl">开户行</label>
+		 			<input type="text" placeholder="开户行" id="name" class="fr right" :value="list.bank_name">
+		 		</div>
+		 		<div class="clearfix">
+		 			<label class="fl">开户行所在地</label>
+		 			<input type="text" placeholder="开户行所在地" readonly id="J_Address" class="fr right" :value="list.bank_address">
+		 		</div>
+		 		<div class="clearfix">
+		 			<label class="fl">银行卡号</label>
+		 			<input type="text" placeholder="银行卡号" id="code" class="fr right" :value="list.bank_code">
+		 		</div>
+		 		<div class="clearfix">
+		 			<label class="fl">开户人姓名</label>
+		 			<input type="text" placeholder="开户人姓名" id="comp" class="fr right" :value="list.bank_compellation">
+		 		</div>
+		 		<button type="button" @click="bindbank()" class="redbg white">提交</button>
+		 </div>
+		 <script type="text/javascript" src="js/ydui.js" ></script>
+		 <script type="text/javascript" src="js/ydui.citys.js" ></script>
+		 <script type="text/javascript" src="js/ydui.flexible.js" ></script>
+		 <script>
+			$(function() {
+				uid  = article.getUserId()
+				/*背景色*/
+		      	$("html").addClass("whitebg");
+		      	$("body").addClass("whitebg");
+				//实例化vue
+				vue = new Vue({
+					el: '#app',
+					data: {
+						list: [],
+					},
+					methods: {
+						getData: function() {
+							dataRequest.method("/api/member/bindBank", {
+								'uid': uid,
+							}, "get", function(res) {
+								if(res.code == 200) {
+									vue.list = res.result
+								}
+							})
+						},
+						bindbank:function(){
+							var name    = $("#name").val()
+							var address = $("#J_Address").val()
+							var code    = $("#code").val()
+							var comp    = $("#comp").val()
+							if(name.length <= 0){
+								article.myToast('请填写开户行！')
+								return false;
+							}
+							if(address.length <= 0){
+								article.myToast('请填写开户行地址！')
+								return false;
+							}
+							if(code.length <= 0){
+								article.myToast('请填写银行卡号！')
+								return false;
+							}else if( code.length < 16 || code.length > 19 ){
+								article.myToast('银行卡号长度必须在16到19之间')
+								return false;
+							}
+							var regName =/^[\u4e00-\u9fa5]{2,4}$/;
+							if(comp.length <= 0){
+								article.myToast('请填写开户人姓名！')
+								return false;
+							}else if(!regName.test(comp)){
+								article.myToast('开户人姓名格式不正确！')
+								return false;
+							}
+							dataRequest.method("/api/member/bindBank", {
+								'uid': uid,
+								'name': name,
+								'address': address,
+								'code': code,
+								'comp': comp,
+							}, "post", function(res) {
+								if(res.code == 200) {
+									location.href = "backcard.html"
+								}else{
+									article.myToast(res.msg)
+								}
+							})
+						}
+					},
+				})
+				vue.getData()
+				
+			    var $target = $('#J_Address');
+		        $target.citySelect();
+		        $target.on('tap', function (event) {
+		            event.stopPropagation();
+		            $target.citySelect('open');
+		        });
+		        $target.on('done.ydui.cityselect', function (ret) {
+		            $(this).val(ret.provance + ' ' + ret.city + ' ' + ret.area);
+		        });
+			})
+		</script>
+	</body>
+</html>
+    

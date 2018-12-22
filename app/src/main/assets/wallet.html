@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的钱包</title>
+		<!--mui样式-->
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<!--公用样式样式-->
+		<link rel="stylesheet" href="css/comment.css" />
+		<!--页面样式-->
+		<link rel="stylesheet" href="css/style.css" />
+		<!--js-->
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<!--rem js-->
+		<script type="text/javascript" src="js/rem.js"></script>
+		<!--mui js-->
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<!--common js-->
+		<script type="text/javascript" src="js/common.js"></script>
+		<!--vue js-->
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<style>
+			.withdraw-main input[type="radio"] {
+			    width: 0.85rem !important;
+			    width: 0.85rem;
+			    -webkit-appearance: none;
+			    background: url(./images/radio_06.png) no-repeat;
+			    vertical-align: middle;
+			    background-size: 100%;
+			    margin-right: 0.5rem;
+			    margin-top: 0.1rem;
+			}
+			.withdraw-main input[type="radio"]:checked {
+			    background: url(./images/radio_03.png) no-repeat;
+			    background-size: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<!--书币    start-->
+			<div class="wallet clearfix">
+				<div class="fl white">
+					<div class="wallet-name">书币</div>
+					<div class="wallet-num mt1 ft30" v-text="list.member_skr">0.00</div>
+				</div>
+				<div class="fr">
+					<button type="button" class="topups-btn">充值</button>
+				</div>
+			</div>
+			<!--书币    end-->
+
+			<!--余额    start-->
+			<div class="wallet wallet-01 clearfix">
+				<div class="fl white">
+					<div class="wallet-name">余额</div>
+					<div class="wallet-num mt1 ft30" v-text="list.member_balance">0.00</div>
+				</div>
+				<div class="fr">
+					<button type="button" class="withdraw-btn">提现</button>
+				</div>
+			</div>
+			<!--余额    end-->
+		</div>
+		<div class="wallet-list">
+			<ul>
+				<li>
+					<a href="income.html" class="clearfix">
+						<img src="images/code_09.png" class="wallet-icon fl">
+						<span class="fl ml3">我的收入</span>
+						<img src="images/gonext.png" class="fr gonext">
+					</a>
+				</li>
+				<li>
+					<a href="transaction.html" class="clearfix">
+						<img src="images/code_12.png" class="wallet-icon fl">
+						<span class="fl ml3">交易记录</span>
+						<img src="images/gonext.png" class="fr gonext">
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<!--充值内容  start-->
+		<div class="topups windows hide">
+			<div class="topups-main whitebg">
+				<div class="right"><img src="images/close.png" class="close"></div>
+				<div class="ft9 center">充值书币</div>
+				<ul class="clearfix">
+					<li class="focus">¥ <span>1</span></li>
+					<li>¥ <span>18</span></li>
+					<li>¥ <span>88</span></li>
+					<li>¥ <span>128</span></li>
+					<li>¥ <span>68</span></li>
+					<li>¥ <span>98</span></li>
+				</ul>
+				<button type="button" class="redbg white" onclick="Recharge()">充值</button>
+			</div>
+		</div>
+		<!--充值内容  end-->
+
+		<!--提现内容  start-->
+		<div class="withdrawals windows hide" id="withdraw">
+			<div class="withdraw-main whitebg">
+				<div class="right"><img src="images/close.png" class="close"></div>
+				<div class="ft9 center">提现</div>
+				<nav>提现到</nav>
+				<!--未绑定银行卡支付宝-->
+				<ul>
+	     	 	    <li class="clearfix">
+	     	 	    	<img src="images/width_03.png" class="fl">
+	     	 	    	<span class="fl ml3">银行卡</span>
+	     	 	    	<a href="backcard.html">
+	     	 	    		<span class="red fr">编辑</span>
+	     	 	    	</a>
+	     	 	    	<input type="radio" class="fr" name="type"  value="1" />
+	     	 	    </li>
+	     	 	    <li class="clearfix">
+	     	 	    	<img src="images/width_06.png" class="fl">
+	     	 	    	<span class="fl ml3">支付宝</span>
+	     	 	    	<a href="bindpay.html">
+	     	 	    		<span class="red fr">编辑</span>
+	     	 	    	</a>
+	     	 	    	<input type="radio" class="fr" name="type"  value="2" />
+	     	 	    </li>
+	     	 	</ul>
+				<nav>
+					<div>提现金额</div>
+					<form method="post" action="">
+						<span class="ft30">¥</span>
+						<input type="text" placeholder="输入提现金额" id="withDraw" />
+					</form>
+				</nav>
+				<button type="button" class="redbg white" onclick="withDraw()">提现</button>
+			</div>
+		</div>
+		<!--提现内容  end-->
+		<script>
+			$(function() {
+				uid  = article.getUserId()
+				//实例化vue
+				vue = new Vue({
+					el: '#app',
+					data: {
+						list: [],
+					},
+					methods: {
+						getData: function() {
+							dataRequest.method("/api/member/myMoney", {
+								'uid': uid,
+							}, "post", function(res) {
+								if(res.code == 200) {
+									vue.list = res.result
+								}
+							})
+						}
+					}
+
+				})
+				vue.getData()
+			})
+			function withDraw(){
+				var total  = parseFloat($('#withDraw').val())
+				var type   = $(".current").find('input').val()
+				if(!type){
+					article.myToast('请选择提现方式')
+					return;
+				}
+				if( isNaN(total) || total <= 0 ){	
+					article.myToast('请输入大于0的提现金额')
+					return;
+				}
+				dataRequest.method("/api/member/withdrawDo", {
+					'uid': uid,
+					'price': total,
+					'type': type,
+				}, "post", function(res) {
+					if(res.code == 200) {
+						article.myToast('提现成功')
+						setTimeout(function(){
+							window.location.reload()
+						},600)
+					}else{
+						article.myToast(res.msg)
+					}
+				})
+			}
+			function Recharge(){
+				var total   = parseFloat($('.focus').find('span').text())
+				var pay     = 2;
+				var uid     = article.getUserId()
+				if(pay == "" || !pay) {
+					article.myToast('请选择支付方式');
+				} else {
+					dataRequest.method("/api/member/Recharge", {
+						'uid': uid,
+						'price': total,
+						'ispay': pay
+					}, "post", function(res) {
+
+						if(res.code == 200) {
+							$(".topups").hide();
+							article.aliPay(res.result,total)
+							
+						} else {
+							article.myToast(res.msg)
+						}
+
+					})
+
+				}
+			}
+		</script>
+		<script>
+			/*背景色*/
+			$("html").addClass("whitebg");
+			$("body").addClass("whitebg");
+			/*充值选择*/
+			$(document).on('click','.topups-btn',function(){
+				$(".topups").show();
+			})
+			$(document).on('click','.withdraw-btn',function(){
+				$(".withdrawals").show();
+			})
+			$(document).on('click','.close',function(){
+				$(".topups").hide();
+				$(".withdrawals").hide();
+			})
+			$(function() {
+				var div_li = $(".withdraw-main ul li");
+				div_li.click(function() {
+					$(this).addClass("current").siblings().removeClass("current");
+				});
+				var div_li = $(".topups-main ul li");
+				div_li.click(function() {
+					$(this).addClass("focus").siblings().removeClass("focus");
+				});
+			})
+
+			$("#price").on("focus", function() {
+				$(".withdraw-main").css({
+					'top': '5%'
+				})
+			})
+
+			$("#price").on("keyup", function() {
+				$(".withdraw-main").css({
+					'top': '10%'
+				})
+			})
+		</script>
+	</body>
+
+</html>

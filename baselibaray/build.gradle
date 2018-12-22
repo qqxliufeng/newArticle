@@ -1,0 +1,51 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    api rootProject.ext.dependencies["libConstraintLayout"]
+    api rootProject.ext.dependencies["libSupportDesign"]
+    api rootProject.ext.dependencies["libKotlin"]
+    api rootProject.ext.dependencies["libDagger"]
+    annotationProcessor rootProject.ext.dependencies["libDaggerCompiler"]
+    api rootProject.ext.dependencies["libRxJava"]
+    api rootProject.ext.dependencies["libRxAndroid"]
+    api rootProject.ext.dependencies["libRetrofit"]
+    api rootProject.ext.dependencies["libRetrofitConverterGson"]
+    api rootProject.ext.dependencies["libRetrofitAdapterRxJava"]
+    api rootProject.ext.dependencies["libRetrofitAdapterScalars"]
+    api rootProject.ext.dependencies["libOkHttpLoggingInterceptor"]
+    api rootProject.ext.dependencies["libMultiDex"]
+    api rootProject.ext.dependencies["libMatisse"]
+    api rootProject.ext.dependencies["libBaseRecyclerViewAdapterHelper"]
+    api rootProject.ext.dependencies["libGlide"]
+    implementation rootProject.ext.dependencies["libGlideTransformations"]
+    api rootProject.ext.dependencies["libLuban"]
+    api rootProject.ext.dependencies["libAnko"]
+    api rootProject.ext.dependencies["libAnkoCommons"]
+    api rootProject.ext.dependencies["libEasypermissions"]
+    api rootProject.ext.dependencies["libFlexBox"]
+    api rootProject.ext.dependencies["libGson"]
+    api rootProject.ext.dependencies["libBanner"]
+}

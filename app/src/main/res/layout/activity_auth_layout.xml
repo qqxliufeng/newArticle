@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/mTlActivityAuth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            app:title="账号和安全"
+            app:titleTextAppearance="?android:attr/textAppearanceMedium"/>
+
+    <FrameLayout
+            android:id="@+id/mFlAuthContainer"
+            android:layout_width="match_parent" android:layout_height="match_parent"/>
+
+</LinearLayout>

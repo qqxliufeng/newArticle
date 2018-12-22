@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_10"
+        android:background="@color/lineColor" />
+
+    <EditText
+        android:id="@+id/mEtPersonalDescriptionContent"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="#fff"
+        android:gravity="left|top"
+        android:hint="用一段话介绍一下自己吧（建议150字以内）"
+        android:padding="@dimen/dp_10"
+        android:maxLength="150"
+        android:textColor="@color/grayTextColor"
+        android:textSize="@dimen/sp_14" />
+
+</LinearLayout>

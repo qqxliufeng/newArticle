@@ -1,0 +1,278 @@
+*{
+	padding: 0;
+	margin: 0;
+	/*touch-action: pan-x;*/
+}
+/*网页字体和颜色*/
+html{  
+    font-family: "Microsoft YaHei", "微软雅黑", Tahoma, Geneva, sans-serif;
+    color: #333333;
+    font-size: 0.7rem;
+}
+/* 去掉 table cell 的边距并让其边重合 */ 
+table{  
+    border-collapse:collapse;  
+    border-spacing:0;  
+}
+/* 去除默认边框 */  
+img {  
+    border:none;
+    vertical-align: middle; 
+    border:0;
+}
+/*input输入文字不贴边*/
+input::-webkit-input-placeholder { /* WebKit browsers */
+    color: #A8A8A8; padding-left: 5px; font-size: 0.6rem;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #A8A8A8; padding-left: 5px; font-size: 0.6rem;
+}
+input::-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #A8A8A8; padding-left: 5px; font-size: 0.6rem;
+}
+input,optgroup,select,textarea{
+	
+-webkit-tap-highlight-color: rgba(0, 0, 0, 0);    
+
+-webkit-user-modify: read-write-plaintext-only;
+
+outline:none;
+
+}
+button{
+	cursor: pointer;
+	outline:none;
+}
+/* 去掉列表前的标识，li 会继承 */ 
+ol,ul {  
+    list-style:none;  
+}
+/* 默认不显示下划线，保持页面简洁 */  
+ins,a{  
+    text-decoration:none;  
+}
+a{
+	color: #333333 !important;
+}
+a:focus {
+    outline: none
+}
+a:hover {
+    color: #FD3939;
+}
+/*显示隐藏*/
+.hide,.hides,.hidt,.hidess{  
+    display:none;  
+}  
+.block{  
+    display:block;  
+}
+/* 设置浮动，减少浮动带来的 bug */  
+.fl, .fr {  
+    display:inline;  
+}  
+/*左浮动*/
+.fl {  
+    float:left;  
+}  
+/*右浮动*/
+.fr {  
+    float:right;  
+}
+/*清除浮动*/
+.clearfix:after{
+	display:block;
+	clear:both;
+	content:"";
+	visibility:hidden;
+	height:0;
+} 
+.clearfix{
+	zoom:1;
+}
+.windows{
+	position: fixed;
+	z-index: 999999;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+}
+.windows::-webkit-scrollbar{
+	width: 0px;
+	height: 0px;
+}
+.center{
+	text-align: center;
+}
+.right{
+	text-align: right;
+}
+.left{
+	text-align: left;
+}
+.cursor{
+	cursor: pointer;
+}
+.bold{
+	font-weight: bold;
+}
+.bor0{
+	border: none !important;
+}
+.backbgnone{
+	background: none !important;
+}
+.height{
+	height: 2.5rem;
+}
+.gonext{
+	width: 0.275rem;
+	height: 0.5rem;
+	margin-top: 0.25rem;
+}
+.focus{
+	color: #FF5163 !important;
+	border: 2px solid #FF5163 !important;
+}
+.current{
+	background: #F9F9F9;
+}
+.hr{
+	width: 100%;
+	height: 0.7rem;
+	background: #F4F5F9;
+}
+/*字号*/
+.ft4{
+	font-size: 0.4rem;
+}
+.ft45{
+	font-size: 0.45rem;
+}
+.ft5{
+	font-size: 0.5rem;
+}
+.ft55{
+	font-size: 0.55rem;
+}
+.ft6{
+	font-size: 0.6rem;
+}
+.ft65{
+	font-size: 0.65rem;
+}
+.ft75{
+	font-size: 0.75rem;
+}
+.ft8{
+	font-size: 0.8rem;
+}
+.ft85{
+	font-size: 0.85rem;
+}
+.ft9{
+	font-size: 0.9rem;
+}
+.ft95{
+	font-size: 0.95rem;
+}
+.ft1{
+	font-size: 1rem;
+}
+.ft30{
+	font-size: 1.5rem;
+}
+.ft36{
+	font-size: 1.8rem;
+}
+/*颜色    背景颜色*/
+.white{
+	color: #FFFFFF;
+}
+.whitebg{
+	background-color: #FFFFFF;
+}
+.red{
+	color: #FF5163;
+}
+.redbg{
+	background: #FF5163;
+}
+.gary{
+	color: #989898;
+}
+.garybg{
+	background: #F9F9FB;
+}
+.blue{
+	color: #2E89C9;
+}
+/*外间距*/
+.mt05{
+	margin-top: 0.5rem;
+}
+.mt08{
+	margin-top: 0.8rem;
+}
+.mt1{
+	margin-top: 1rem;
+}
+.ml3{
+	margin-left: 3%;
+}
+.mr3{
+	margin-right: 3%;
+}
+.loadMore {
+  text-align: center;
+  padding: 0.5rem 0;
+  font-size: 0.6rem;
+  color: #999999;
+}
+.loadMore img {
+  height: 1rem;
+  width: auto;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.loadMore.animate img {
+  animation: Rotate 1s linear infinite;
+  -moz-animation: Rotate 1s linear infinite;/* Firefox */
+  -webkit-animation: Rotate 1s linear infinite;/* Safari å’Œ Chrome */
+  -o-animation: Rotate 1s linear infinite;
+}
+@keyframes Rotate {
+  0% {
+    -webkit-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -ms-transform: rotate(0);
+    -o-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes Rotate {
+  0% {
+    -webkit-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -ms-transform: rotate(0);
+    -o-transform: rotate(0);
+    transform: rotate(0);
+    transform-origin: 50%;
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
