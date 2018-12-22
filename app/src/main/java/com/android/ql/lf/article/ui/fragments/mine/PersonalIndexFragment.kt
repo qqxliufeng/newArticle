@@ -140,10 +140,10 @@ class PersonalIndexFragment : BaseRecyclerViewFragment<ArticleItem>() {
         }
         mTvPersonalIndexPraise.setOnClickListener {
             val admireDialog = ArticleAdmireDialogFragment()
-            admireDialog.setCallBack{content, price ->
+            admireDialog.setCallBack{price ->
                 mPresent.getDataByPost(0x4, getBaseParamsWithModAndAct(ARTICLE_MODULE,ARTICLE_ADMIRE_ACT)
                     .addParam("cuid",pid)
-                    .addParam("content",content)
+                    .addParam("content","")
                     .addParam("price",price))
             }
             admireDialog.setFacePath(facePath ?: "")
@@ -230,8 +230,10 @@ class PersonalIndexFragment : BaseRecyclerViewFragment<ArticleItem>() {
                         }
                         if (focusStatus == 0){
                             mTvPersonalIndexFocus.text = "+ 关注"
+                            mTvPersonalIndexFocus.isChecked = true
                         }else{
                             mTvPersonalIndexFocus.text = "✓ 已关注"
+                            mTvPersonalIndexFocus.isChecked = false
                         }
                         mTvPersonalIndexFocus.setOnClickListener {
                             mPresent.getDataByPost(
@@ -277,6 +279,8 @@ class PersonalIndexFragment : BaseRecyclerViewFragment<ArticleItem>() {
                             focusStatus = 0
                             mTvPersonalIndexFocus.text = "+ 关注"
                         }
+                        mTvPersonalIndexFocus.isChecked = !mTvPersonalIndexFocus.isChecked
+                        RxBus.getDefault().post(ArticleInfoForNormalFragment.UPDATE_FOCUS_FLAG)
                     }else{
                         toast("操作失败，请重试")
                     }

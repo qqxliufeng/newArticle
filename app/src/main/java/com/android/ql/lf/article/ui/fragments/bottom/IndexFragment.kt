@@ -19,7 +19,7 @@ import java.lang.Exception
 
 class IndexFragment : BaseNetWorkingFragment() {
 
-    val titles = arrayListOf("类别", "专业度", "地域")
+    val titles = arrayListOf<Classify>()
 
     private val typeList = arrayListOf<Classify>()
     private val addressList = arrayListOf<Classify>()
@@ -48,6 +48,7 @@ class IndexFragment : BaseNetWorkingFragment() {
                     val addressJsonArray = it.optJSONArray("address")
                     val classifyJsonAddress = it.optJSONArray("classify")
                     val ageJsonAddress = it.optJSONArray("age")
+                    val hTypeJSONArray = it.optJSONArray("htype")
                     (0 until addressJsonArray.length()).forEach {
                         val json = addressJsonArray.optJSONObject(it)
                         val classify = Classify(json.optInt("address_id"),json.optString("address_name"))
@@ -62,6 +63,11 @@ class IndexFragment : BaseNetWorkingFragment() {
                         val json = ageJsonAddress.optJSONObject(it)
                         val classify = Classify(json.optInt("age_id"),json.optString("age_title"))
                         ageList.add(classify)
+                    }
+                    (0 until hTypeJSONArray.length()).forEach {
+                        val json = hTypeJSONArray.optJSONObject(it)
+                        val classify = Classify(json.optInt("htype_id"),json.optString("htype_title"))
+                        titles.add(classify)
                     }
                 }
                 typeList.add(0,Classify(0,"推荐"))
@@ -79,7 +85,7 @@ class IndexFragment : BaseNetWorkingFragment() {
 
                     override fun getCount() = titles.size
 
-                    override fun getPageTitle(position: Int) = titles[position]
+                    override fun getPageTitle(position: Int) = titles[position].classify_title
                 }
                 mVpIndexBottom.offscreenPageLimit = 3
                 mTlIndexBottom.setupWithViewPager(mVpIndexBottom)

@@ -23,7 +23,7 @@ class PersonalDescriptionFragment : BaseNetWorkingFragment() {
 
     override fun initView(view: View?) {
         mEtPersonalDescriptionContent.isLongClickable = false
-
+        mEtPersonalDescriptionContent.setText(UserInfo.user_signature ?: "")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

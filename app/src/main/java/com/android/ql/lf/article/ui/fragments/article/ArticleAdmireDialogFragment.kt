@@ -32,7 +32,7 @@ class ArticleAdmireDialogFragment : DialogFragment() {
 
     private var price:Int = 0
 
-    private var callback:((content:String,price:Int)->Unit)? = null
+    private var callback:((price:Int)->Unit)? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
@@ -53,7 +53,7 @@ class ArticleAdmireDialogFragment : DialogFragment() {
                 toast("请选择赞赏金额")
                 return@setOnClickListener
             }
-            this.callback?.invoke(if (mEtArticleAdmireLeaveMessage.isEmpty()){""}else{mEtArticleAdmireLeaveMessage.getTextString()},price)
+            this.callback?.invoke(/*if (mEtArticleAdmireLeaveMessage.isEmpty()){""}else{mEtArticleAdmireLeaveMessage.getTextString()}*/price)
             dismiss()
         }
         checkedTextViewList.clear()
@@ -104,7 +104,7 @@ class ArticleAdmireDialogFragment : DialogFragment() {
         this.facePath = facePath
     }
 
-    fun setCallBack(callback:(content:String,price:Int)->Unit){
+    fun setCallBack(callback:(price:Int)->Unit){
         this.callback = callback
     }
 

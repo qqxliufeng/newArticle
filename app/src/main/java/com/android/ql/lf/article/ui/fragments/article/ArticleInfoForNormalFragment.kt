@@ -56,6 +56,7 @@ class ArticleInfoForNormalFragment : BaseRecyclerViewFragment<ArticleCommentItem
     companion object {
 
         const val UPDATE_ARTICLE_FLAG = "update_article"
+        const val UPDATE_FOCUS_FLAG = "update_focus_flag"
 
         fun startArticleInfoForNormal(context: Context, aid: Int, auid: Int = 0, like: Int = 0, love: Int = 0) {
             FragmentContainerActivity.from(context).setTitle("详情").setNeedNetWorking(true)
@@ -101,6 +102,19 @@ class ArticleInfoForNormalFragment : BaseRecyclerViewFragment<ArticleCommentItem
             if (it == UPDATE_ARTICLE_FLAG){
                 RxBus.getDefault().post(mCurrentArticle)
                 mPresent.getDataByPost(0x1, getBaseParamsWithModAndAct(ARTICLE_MODULE, ARTICLE_DETAIL_ACT).addParam("aid", aid))
+            }
+        }
+    }
+
+    private val updateFocusStatus by lazy {
+        RxBus.getDefault().toObservable(String::class.java).subscribe {
+            if (it == UPDATE_FOCUS_FLAG){
+                focusTextView?.isChecked = !(focusTextView?.isChecked ?: false)
+                if (focusTextView?.isChecked == false) {
+                    focusTextView?.text = "+ 关注"
+                } else {
+                    focusTextView?.text = "✓ 已关注"
+                }
             }
         }
     }
@@ -157,6 +171,7 @@ class ArticleInfoForNormalFragment : BaseRecyclerViewFragment<ArticleCommentItem
     override fun initView(view: View?) {
         super.initView(view)
         updateArticleSubscription
+        updateFocusStatus
         setRefreshEnable(false)
         mBaseAdapter.setHeaderAndEmpty(true)
         mHeaderWebView.setNormalSetting()
@@ -177,10 +192,10 @@ class ArticleInfoForNormalFragment : BaseRecyclerViewFragment<ArticleCommentItem
                     return@doClickWithUserStatusStart
                 }
                 admireDialog = ArticleAdmireDialogFragment()
-                admireDialog?.setCallBack { content, price ->
+                admireDialog?.setCallBack { price ->
                     mPresent.getDataByPost(0x10, getBaseParamsWithModAndAct(ARTICLE_MODULE,ARTICLE_ADMIRE_ACT)
                         .addParam("cuid",mCurrentArticle?.articles_userData?.member_id)
-                        .addParam("content",content)
+                        .addParam("content","")
                         .addParam("theme",mCurrentArticle?.articles_id)
                         .addParam("price",price))
                     admireDialog?.dismiss()
