@@ -14,6 +14,8 @@ class LeaveMessage {
     var leave_theme : Int = 0
     var leave_times:String? = null
     var leave_userData : LeaveMessageUserData? = null
+    var leave_reply : ArrayList<LeaveMessageReplyData> = arrayListOf()
+    var seeMore: Boolean = false
 }
 
 class LeaveMessageUserData{
@@ -32,4 +34,14 @@ class LeaveMessageUserData{
     var member_birthday :String? = null
     var member_sex : Int = 0
     var member_push : Int = 0
+}
+
+class LeaveMessageReplyData{
+    var leave_cuid:Int = 0
+    var leave_id:Int = 0
+    var leave_uid:Int = 0
+    var leave_content:String = ""
+    var member_id:Int = 0
+    var member_nickname:String = ""
+    var member_pic:String = ""
 }

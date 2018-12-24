@@ -44,12 +44,16 @@
     </RelativeLayout>
 
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:background="@drawable/shape_tv_bg_7"
-              android:layout_marginTop="20dp"
               tools:text="关于此的部分其实也好写"
+              android:layout_marginLeft="50dp"
               android:id="@+id/mTvLeaveMessageItemContent"
-              android:textColor="@color/blackTextColor"
-              android:padding="@dimen/dp_10"/>
+              android:textColor="@color/blackTextColor"/>
+
+    <com.android.ql.lf.article.ui.widgets.LeaveReplyLinearLayout
+            android:layout_marginTop="20dp"
+            android:id="@+id/mCLLArticleReplyInfoItemReplyContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
               android:textColor="@color/grayTextColor"

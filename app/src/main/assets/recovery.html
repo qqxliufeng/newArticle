@@ -74,8 +74,8 @@
 
 		$(function() {
 		   //获取webview.js  返回的用户ID
-		   var uid  = 650
-//         var uid  = article.getUserId()
+//		   var uid  = 650
+           var uid  = article.getUserId()
 			//实例化vue
 			vue = new Vue({
 				el: '#app',
@@ -84,8 +84,8 @@
 				},
 				methods: {
 					getData: function() {
-//						var type = article.getArticleType()
-						var type = 5
+						var type = article.getArticleType()
+//						var type = 5
 						dataRequest.method("/api/member/myRecycle", {
 							'uid': uid,
 							'status':type

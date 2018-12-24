@@ -5,14 +5,15 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
-import android.text.TextUtils
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import com.android.ql.lf.article.R
 import com.android.ql.lf.article.data.LeaveMessage
+import com.android.ql.lf.article.data.LeaveMessageReplyData
 import com.android.ql.lf.article.ui.fragments.article.ArticleInfoForNormalFragment
 import com.android.ql.lf.article.ui.fragments.mine.PersonalIndexFragment
+import com.android.ql.lf.article.ui.widgets.LeaveReplyLinearLayout
 import com.android.ql.lf.article.ui.widgets.PopupWindowDialog
 import com.android.ql.lf.article.utils.*
 import com.android.ql.lf.baselibaray.ui.activity.FragmentContainerActivity
@@ -22,6 +23,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import org.jetbrains.anko.bundleOf
 import org.jetbrains.anko.support.v4.toast
+import org.json.JSONObject
 
 /**
  * Created by lf on 18.11.8.
@@ -41,6 +43,8 @@ class LeaveMessageInfoFragment : BaseRecyclerViewFragment<LeaveMessage>() {
         }
     }
 
+    private var currentItem:LeaveMessage? = null
+
     private val cuid by lazy {
         arguments?.getInt("cuid") ?: 0
     }
@@ -50,18 +54,23 @@ class LeaveMessageInfoFragment : BaseRecyclerViewFragment<LeaveMessage>() {
             override fun convert(helper: BaseViewHolder?, item: LeaveMessage?) {
                 helper?.setText(R.id.mTvLeaveMessageItemUserNickName,item?.leave_userData?.member_nickname)
                 GlideManager.loadFaceCircleImage(mContext,item?.leave_userData?.member_pic,helper?.getView(R.id.mIvLeaveMessageItemUserFace))
-                if (item?.leave_theme == 0) {
-                    helper?.setTextColor(R.id.mTvLeaveMessageItemContent,mContext.resources.getColor(R.color.blackTextColor))
-                    helper?.setText(R.id.mTvLeaveMessageItemContent, item.leave_content)
-                }else{
-                    helper?.setTextColor(R.id.mTvLeaveMessageItemContent,mContext.resources.getColor(android.R.color.holo_blue_dark))
-                    helper?.setText(R.id.mTvLeaveMessageItemContent, "《${item?.leave_content}》")
+                helper?.setText(R.id.mTvLeaveMessageItemContent, item?.leave_content)
+                val llContainer = helper?.getView<LeaveReplyLinearLayout>(R.id.mCLLArticleReplyInfoItemReplyContainer)
+                llContainer?.setData(item?.leave_reply,item?.seeMore ?: false)
+                llContainer?.setOnSeeMore {
+                    item?.seeMore = it
                 }
+//                if (item?.leave_theme == 0) {
+//                    helper?.setTextColor(R.id.mTvLeaveMessageItemContent,mContext.resources.getColor(R.color.blackTextColor))
+//                }else{
+//                    helper?.setTextColor(R.id.mTvLeaveMessageItemContent,mContext.resources.getColor(android.R.color.holo_blue_dark))
+//                    helper?.setText(R.id.mTvLeaveMessageItemContent, "《${item?.leave_content}》")
+//                }
                 helper?.setText(R.id.mTvLeaveMessageItemTime,item?.leave_times)
                 helper?.addOnClickListener(R.id.mTvLeaveMessageItemReply)
                 helper?.addOnClickListener(R.id.mTvLeaveMessageItemUserNickName)
                 helper?.addOnClickListener(R.id.mIvLeaveMessageItemUserFace)
-                helper?.addOnClickListener(R.id.mTvLeaveMessageItemContent)
+//                helper?.addOnClickListener(R.id.mTvLeaveMessageItemContent)
             }
         }
 
@@ -97,6 +106,12 @@ class LeaveMessageInfoFragment : BaseRecyclerViewFragment<LeaveMessage>() {
             if (check!=null){
                 if (check.code == SUCCESS_CODE){
                     toast("回复发表成功")
+                    val jsonObject = (check.obj as JSONObject).optJSONObject(RESULT_OBJECT)
+                    val replyData = LeaveMessageReplyData()
+                    replyData.member_nickname = jsonObject.optString("leave_nickname")
+                    replyData.leave_content = jsonObject.optString("leave_content")
+                    currentItem?.leave_reply?.add(0,replyData)
+                    mBaseAdapter.notifyItemChanged(mArrayList.indexOf(currentItem))
                 }else{
                     toast("回复发表失败")
                 }
@@ -108,6 +123,7 @@ class LeaveMessageInfoFragment : BaseRecyclerViewFragment<LeaveMessage>() {
 
     override fun onMyItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         super.onMyItemChildClick(adapter, view, position)
+        currentItem = mArrayList[position]
         when {
             view!!.id == R.id.mTvLeaveMessageItemReply -> {
                 val contentView = View.inflate(mContext,R.layout.dialog_article_comment_layout,null)
@@ -123,6 +139,7 @@ class LeaveMessageInfoFragment : BaseRecyclerViewFragment<LeaveMessage>() {
                     popUpWindow.dismiss()
                     mPresent.getDataByPost(0x1, getBaseParamsWithModAndAct(MESSAGE_MODULE, LEAVE_DO_ACT)
                         .addParam("cuid",cuid)
+                        .addParam("hid",currentItem?.leave_id)
                         .addParam("content",content.getTextString()))
                 }
                 contentView.post { PopupWindowDialog.toggleSoft(mContext) }
