@@ -46,7 +46,7 @@
 								<input type="hidden" :value="item.collect_articleData.articles_status" />
 								<span class="blue" v-text="item.collect_userData.member_nickname" onclick="jumpMain(this,1)"></span> 
 								<span v-text="item.collect_status"></span>
-								<span class="blue" onclick="jumpDet(this)">《<span v-text="item.collect_article"></span>》</span>
+								<span class="blue" onclick="jumpDet(this)" v-if="item.collect_article"><span v-text="item.collect_article"></span></span>
 							</div>
 							<p v-text="item.collect_times"></p>
 						</div>
@@ -56,7 +56,6 @@
 					</div>
 				</ul>
 			</div>
-			
 		</div>
 	</body>
 	<script id="list-template" type="text/html">
@@ -70,7 +69,9 @@
 						<input type="hidden" value="{{item.collect_articleData.articles_status}}" />
 						<span class="blue" onclick="jumpMain(this,1)">{{item.collect_userData.member_nickname}}</span> 
 						<span>{{item.collect_status}}</span>
-						<span class="blue" onclick="jumpDet(this)">《<span>{{item.collect_article}}</span>》</span>
+						{{if item.collect_article}}
+						  <span class="blue" onclick="jumpDet(this)">《<span>{{item.collect_article}}</span>》</span>
+						{{/if}}
 					</div>
 					<p v-text="item.collect_times"></p>
 				</div>
