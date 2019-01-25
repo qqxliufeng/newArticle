@@ -68,4 +68,5 @@ dependencies {
     implementation files('libs/open_sdk_r5990_lite.jar')
     implementation files('libs/jcore-android-1.2.6.jar')
     implementation files('libs/jpush-android-3.1.7.jar')
+    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
 }

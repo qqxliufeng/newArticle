@@ -281,7 +281,7 @@ open class ArticleEditFragment : BaseNetWorkingFragment() {
                         IdentityAuthFragment.startIdentityAuthFragment(mContext)
                     }
                     check.code == "500" -> {
-                        toast("当前身份信息正在认证中，暂不能公开发布文章")
+                        toast((check.obj as JSONObject).optString("msg"))
                     }
                 }
             }else{

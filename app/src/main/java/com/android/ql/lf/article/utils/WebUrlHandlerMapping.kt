@@ -32,6 +32,7 @@ fun WebView.loadWrapperData(data: String?) {
         """<div style="font-size: 2.8rem;">$data</div>
                            <script type="text/javascript">
                                 (function(){
+                                    var imagePathList = [];
                                     var aobjs = document.getElementsByTagName("a");
                                     for (var i = 0; i < aobjs.length; i++) {
                                         var a = aobjs[i];
@@ -40,6 +41,10 @@ fun WebView.loadWrapperData(data: String?) {
                                     var objs = document.getElementsByTagName('img');
                                     for(var i=0;i<objs.length;i++){
                                         var img = objs[i];
+                                        imagePathList.push(img.src);
+                                        img.onclick = function(){
+                                            article.startImageBrowser(this.src,imagePathList.toString())
+                                        }
                                         img.style.width = '100%'; img.style.height = 'auto';
                                     }
                                 }())

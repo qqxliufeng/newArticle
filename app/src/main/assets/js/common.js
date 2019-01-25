@@ -210,7 +210,7 @@ function ajaxFileUpload(id, aurl, id1, uid) {
 		fileElementId: [id1], //file控件id。就是input type="file" id="image2"
 		dataType: 'json',
 		success: function(pic, status) {
-			console.log(pic)
+
 			if(pic.code == 200) {
 
 				$("#" + id).prev().attr("src", turl + pic.result)
@@ -247,7 +247,7 @@ isFirst = true;
  * api   接口名
  * data  参数
  * */
-function data_lod(count, api, data, token, num) {
+function data_lod(count, api, data, token, num, w) {
 
 	var pagesize = count; //总页数
 	var currentpage = 1; //当前页数默认第一页
@@ -265,7 +265,11 @@ function data_lod(count, api, data, token, num) {
 		window.onscroll = function() { //默认一个页面只能同时存在一个window.onscroll函数
 			
 			totalheight = parseFloat($(window).height()) + $(window).scrollTop();
-			if($(window).height() <= totalheight) {
+			$he = $(document).height()
+			if(w != undefined && w){
+				$he = $(window).height()
+			}
+			if($he <= totalheight) {
 				
 				if(stop == true) {
 					stop = false;

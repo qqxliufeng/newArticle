@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.android.ql.lf.article.R
@@ -17,6 +18,7 @@ import com.android.ql.lf.article.ui.activity.ArticleEditActivity
 import com.android.ql.lf.article.ui.fragments.mine.IdentityAuthFragment
 import com.android.ql.lf.article.ui.fragments.mine.IdentityAuthUpdateFragment
 import com.android.ql.lf.article.ui.fragments.mine.MyFriendListFragment
+import com.android.ql.lf.article.ui.fragments.other.BrowserImageFragment
 import com.android.ql.lf.article.ui.fragments.other.NetWebViewFragment
 import com.android.ql.lf.article.ui.fragments.share.ArticleShareDialogFragment
 import com.android.ql.lf.article.ui.fragments.share.ImagePosterShareFragment
@@ -30,6 +32,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import kotlinx.android.synthetic.main.fragment_article_info_for_display_layout.*
 import kotlinx.android.synthetic.main.layout_article_info_auth_top_view.*
 import org.jetbrains.anko.bundleOf
+import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.support.v4.toast
 import org.json.JSONObject
 import rx.Observable
@@ -115,6 +118,7 @@ class ArticleInfoDisplayFragment : BaseNetWorkingFragment() {
                                 return true
                             }
                         }
+                        mHeaderWebView.addJavascriptInterface(ArticleJsInterface(),"article")
                         mTvArticleInfoTitle.text = mCurrentArticle?.articles_title ?: ""
                         mTvArticleInfoForAuthInfoNickName.text = mCurrentArticle?.articles_userData?.member_nickname
                         mTvArticleInfoType.text = mCurrentArticle?.articles_tags ?: ""
@@ -218,6 +222,20 @@ class ArticleInfoDisplayFragment : BaseNetWorkingFragment() {
     override fun onDestroyView() {
         unsubscribe(updateArticleSubscription)
         super.onDestroyView()
+    }
+
+
+    inner class ArticleJsInterface{
+
+        @JavascriptInterface
+        fun startImageBrowser(src:String?,imagePath:String?){
+            if (src!=null && src.isNotEmpty() && imagePath!=null && imagePath.isNotEmpty()){
+                mContext.runOnUiThread {
+                    val imagePathList = imagePath.split(Regex(","))
+                    BrowserImageFragment.startBrowserImage(this, imagePathList.toList() as ArrayList<String>,imagePathList.indexOf(src))
+                }
+            }
+        }
     }
 
 }

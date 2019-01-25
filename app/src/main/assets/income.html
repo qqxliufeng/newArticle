@@ -54,6 +54,7 @@
 	</script>
 	<script>
 		$(function() {
+//			uid = 650
 			var uid  = article.getUserId()
 			//实例化vue
 			vue = new Vue({
@@ -74,14 +75,14 @@
 									//上拉加载
 									data_lod(res.arr, '/api/member/myIncome', {
 										'uid': uid,
-									})
+									},'','',1)
 								}, 5)
 							} else {
 								setTimeout(function() {
 									//上拉加载
 									data_lod(0, '/api/member/myIncome', {
 										'uid': uid,
-									})
+									},'','',1)
 								}, 5)
 
 							}

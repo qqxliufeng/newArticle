@@ -128,7 +128,7 @@
 	     	 	    </li>
 	     	 	</ul>
 				<nav>
-					<div>提现金额</div>
+					<div>提现金额<span id="ser"></span></div>
 					<form method="post" action="">
 						<span class="ft30">¥</span>
 						<input type="text" placeholder="输入提现金额" id="withDraw" />
@@ -141,6 +141,7 @@
 		<script>
 			$(function() {
 				uid  = article.getUserId()
+//				uid = 650
 				//实例化vue
 				vue = new Vue({
 					el: '#app',
@@ -154,6 +155,10 @@
 							}, "post", function(res) {
 								if(res.code == 200) {
 									vue.list = res.result
+									if(res.arr){
+										$("#ser").text(res.arr)
+									}
+									
 								}
 							})
 						}

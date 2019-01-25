@@ -15,7 +15,7 @@ import com.android.ql.lf.baselibaray.ui.fragment.BaseNetWorkingFragment
 import kotlinx.android.synthetic.main.fragment_article_web_view_layout.*
 import org.jetbrains.anko.bundleOf
 
-class NetWebViewFragment : BaseNetWorkingFragment() {
+open class NetWebViewFragment : BaseNetWorkingFragment() {
 
     companion object {
         fun startNetWebViewFragment(context: Context, url: String) {

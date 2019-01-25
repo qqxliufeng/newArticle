@@ -9,11 +9,14 @@ import com.android.ql.lf.baselibaray.component.ApiParams
  * @author lf on 18.11.13
  */
 
-fun getBaseParams(): ApiParams = ApiParams().addParam("pt", "android").addParam("uid", if (UserInfo.isLogin()) UserInfo.user_id else "")
+fun getBaseParams(): ApiParams =
+    ApiParams().addParam("pt", "android").addParam("uid", if (UserInfo.isLogin()) UserInfo.user_id else "")
 
-fun getBaseParamsWithModAndAct(mod: String, act: String) : ApiParams = getBaseParams().addParam(ApiParams.MOD_NAME, mod).addParam(ApiParams.ACT_NAME, act)
+fun getBaseParamsWithModAndAct(mod: String, act: String): ApiParams =
+    getBaseParams().addParam(ApiParams.MOD_NAME, mod).addParam(ApiParams.ACT_NAME, act)
 
-fun getBaseParamsWithPage(mod: String, act: String, page: Int = 0, pageSize: Int = 10) : ApiParams = getBaseParamsWithModAndAct(mod, act).addParam("page", page).addParam("pagesize", pageSize)
+fun getBaseParamsWithPage(mod: String, act: String, page: Int = 0, pageSize: Int = 10): ApiParams =
+    getBaseParamsWithModAndAct(mod, act).addParam("page", page).addParam("pagesize", pageSize)
 
 /**       公用模块                **/
 const val T_MODULE = "t"
@@ -67,6 +70,7 @@ const val PERSONAL_CERT_ACT = "personalCert"
 const val ACCOUNT_SAFE_ACT = "accountSafe"
 const val MY_LIKE_FRIEND_ACT = "myLikeFriend"
 const val SETTING_ACT = "setting"
+const val SYSTEM_PROTOCOL_ACT = "systemProtocol"
 
 /**       消息模块                **/
 const val MESSAGE_MODULE = "message"
@@ -76,3 +80,4 @@ const val LEAVE_DO_ACT = "LeaveDo"
 const val MY_LEAVE_DETAIL_ACT = "myLeaveDetail"
 const val COMMENT_REPLY_ACT = "commentReply"
 const val LEAVE_SHARE_DO_ACT = "LeaveShareDo"
+const val MYLEAVELIST_ACT = "myLeaveList"

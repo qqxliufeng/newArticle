@@ -3,10 +3,12 @@ package com.android.ql.lf.article.ui.fragments.article
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
+import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.android.ql.lf.article.R
 import com.android.ql.lf.article.data.ArticleItem
+import com.android.ql.lf.article.ui.fragments.other.BrowserImageFragment
 import com.android.ql.lf.article.ui.fragments.other.NetWebViewFragment
 import com.android.ql.lf.article.utils.*
 import com.android.ql.lf.baselibaray.ui.activity.FragmentContainerActivity
@@ -17,6 +19,7 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_article_info_for_trash_layout.*
 import kotlinx.android.synthetic.main.layout_article_info_auth_top_view.*
 import org.jetbrains.anko.bundleOf
+import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.support.v4.toast
 import org.json.JSONObject
 
@@ -101,6 +104,7 @@ class ArticleInfoForTrashFragment : BaseNetWorkingFragment() {
                                 return true
                             }
                         }
+                        mTrashWebView.addJavascriptInterface(ArticleJsInterface(),"article")
                         mTvArticleInfoTitle.text = mCurrentArticle?.articles_title ?: ""
                         mTvArticleInfoForAuthInfoNickName.text = mCurrentArticle?.articles_userData?.member_nickname
                         mTvArticleInfoType.text = mCurrentArticle?.articles_tags ?: ""
@@ -124,4 +128,18 @@ class ArticleInfoForTrashFragment : BaseNetWorkingFragment() {
             }
         }
     }
+
+    inner class ArticleJsInterface{
+
+        @JavascriptInterface
+        fun startImageBrowser(src:String?,imagePath:String?){
+            if (src!=null && src.isNotEmpty() && imagePath!=null && imagePath.isNotEmpty()){
+                mContext.runOnUiThread {
+                    val imagePathList = imagePath.split(Regex(","))
+                    BrowserImageFragment.startBrowserImage(this, imagePathList.toList() as ArrayList<String>,imagePathList.indexOf(src))
+                }
+            }
+        }
+    }
+
 }

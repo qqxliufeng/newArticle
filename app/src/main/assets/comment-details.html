@@ -43,7 +43,7 @@
 				<input type="hidden" :value="list.comment_userData.member_id" />
 			</div>
 			<div class="comment-deta-main" v-text="list.comment_content"></div>
-			<nav class="comment-cont" style="overflow-y: scroll;">
+			<nav class="comment-cont" style="overflow-y: scroll;" v-if="list.comment_reply!=''">
 				<ul style="margin-bottom: 2rem;">
 					<li v-for="item in list.comment_reply">
 						<span class="blue" onclick="jumpMain(this)"><span v-text="item.comment_userData.member_nickname"></span>：</span>
@@ -105,7 +105,7 @@
         	article.showCommentDialig(uid,theme)
         }
 
-	 </script>
+	</script>
 	</body>
 </html>
        

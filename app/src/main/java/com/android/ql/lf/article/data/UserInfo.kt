@@ -89,6 +89,7 @@ fun UserInfo.jsonToUserInfo(json: JSONObject): Boolean {
         user_cover = json.optString("member_cover")
         user_front = json.optString("member_front")
         user_reverse = json.optString("member_reverse")
+        user_leave = json.optString("member_leave")
         user_allStatus = json.optInt("member_allStatus")
         user_likeStatus = json.optInt("member_likeStatus")
 
@@ -126,6 +127,7 @@ object UserInfo {
     var user_cover:String? = null
     var user_front:String? = null
     var user_reverse:String? = null
+    var user_leave:String? = null
     var user_allStatus:Int = 0
     var user_likeStatus:Int = 0
     var user_qq:String? = null

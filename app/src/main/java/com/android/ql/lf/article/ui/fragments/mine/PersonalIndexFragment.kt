@@ -134,6 +134,7 @@ class PersonalIndexFragment : BaseRecyclerViewFragment<ArticleItem>() {
                 popUpWindow.dismiss()
                 mPresent.getDataByPost(0x3, getBaseParamsWithModAndAct(MESSAGE_MODULE,LEAVE_DO_ACT)
                     .addParam("cuid",pid)
+                    .addParam("type","1")
                     .addParam("content",content.getTextString()))
             }
             contentView.post { PopupWindowDialog.toggleSoft(mContext) }

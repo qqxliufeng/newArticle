@@ -122,6 +122,27 @@
         </FrameLayout>
 
         <FrameLayout
+                android:id="@+id/mTvBottomMyLeaveCollection"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/img_my_leave_message_icon"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:text="我的留言"
+                    android:textColor="@color/blackTextColor"
+                    android:textSize="@dimen/sp_14"/>
+
+        </FrameLayout>
+
+        <FrameLayout
                 android:id="@+id/mTvBottomMessageComment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

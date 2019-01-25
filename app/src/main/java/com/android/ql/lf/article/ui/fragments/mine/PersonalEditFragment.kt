@@ -97,9 +97,9 @@ class PersonalEditFragment : BaseNetWorkingFragment() {
         }
         mRlPersonalEditBirthdayContainer.setOnClickListener {
             val dataDialog = DatePickerDialog(mContext, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                tempBirthday = "$year-$month-$dayOfMonth"
+                tempBirthday = "$year-${month+1}-$dayOfMonth"
                 mPresent.getDataByPost(0x2, getBaseParamsWithModAndAct(MEMBER_MODULE,PERSONAL_EDIT_ACT)
-                    .addParam("birthday","$year.$month.$dayOfMonth"))
+                    .addParam("birthday","$year.${month+1}.$dayOfMonth"))
             }, Calendar.getInstance().get(Calendar.YEAR),
                     Calendar.getInstance().get(Calendar.MONTH),
                     Calendar.getInstance().get(Calendar.DAY_OF_MONTH))

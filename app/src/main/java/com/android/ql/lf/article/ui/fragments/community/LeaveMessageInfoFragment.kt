@@ -140,6 +140,7 @@ class LeaveMessageInfoFragment : BaseRecyclerViewFragment<LeaveMessage>() {
                     mPresent.getDataByPost(0x1, getBaseParamsWithModAndAct(MESSAGE_MODULE, LEAVE_DO_ACT)
                         .addParam("cuid",cuid)
                         .addParam("hid",currentItem?.leave_id)
+                        .addParam("type","1")
                         .addParam("content",content.getTextString()))
                 }
                 contentView.post { PopupWindowDialog.toggleSoft(mContext) }

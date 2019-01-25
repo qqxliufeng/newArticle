@@ -26,7 +26,11 @@
 		 <div class="transaction whitebg" id="app">
 		 	<ul>
 		 		<li class="clearfix" style="display: none;" v-show="list" v-for="item in list">
-		 			<div class="fl mt05" v-text="item.deal_title"></div>
+		 			<div class="fl mt05" >
+		 				<div v-text="item.deal_title"></div>
+		 				<div class="bold"v-text="item.deal_con" v-if="item.deal_con" style="word-wrap: break-word;word-break: break-all;overflow: hidden;"></div>
+		 			</div>
+		 			
 		 			<nav class="fr">
 		 				<div class="red">
 		 					<span v-if="item.deal_sys == 1">+</span>
@@ -62,6 +66,7 @@
 	</script>
 	<script>
 		$(function() {
+//			uid = 650
 			var uid     = article.getUserId()
 			//实例化vue
 			vue = new Vue({

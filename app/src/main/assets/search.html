@@ -69,7 +69,7 @@
 				</ul>
 				<div class="hot">
 					<ul>
-						<li class="clearfix" v-for="(item, index) in list" onclick="jumpDet(this)">
+						<li class="clearfix data" v-for="(item, index) in list" onclick="jumpDet(this)">
 							<input type="hidden" :value="item.articles_id" />
 						    <input type="hidden" :value="item.articles_status" />
 							<span v-text="item.articles_title"></span>
@@ -156,7 +156,7 @@
 					},
 					methods: {
 						getData: function() { 
-							document.activeElement.blur();
+						
 							dataRequest.method("/api/article/articleKeyword", {
 
 							}, "get", function(res) {
@@ -182,29 +182,54 @@
 							}, "post", function(res) {
 
 								if( res.code == 200 ) {
-									document.activeElement.blur();
+
 									vue.list = res.result
 									vue.arr = res.arr
 									$(".hotS").hide()
 									$(".search-ing").show()
 									$(".solution").hide()
-									setTimeout(function() {
-										//上拉加载
-										data_lod(res.arr1, '/api/article/articleKeyword', {
-											'keyword': search
-										})
-									}, 5)
+									//是否开启分页
+									if(!res.arr2){
+										if(res.result){
+											
+										    setTimeout(function() {
+												//上拉加载
+												data_lod(res.arr1, '/api/article/articleKeyword', {
+													'keyword': search
+												})
+											}, 20)
+										    
+										}else{
+											
+											setTimeout(function() {
+												//上拉加载
+												data_lod(0, '/api/article/articleKeyword', {
+													'keyword': search
+												})
+											}, 20)
+										}
+									}else{
+										$(".loadMore").hide()
+									}
+									
+									
 									
 								} else {
 									$(".hotS").hide()
 									$(".search-ing").hide()
 									$(".solution").show()
-									setTimeout(function() {
-										//上拉加载
-										data_lod(res.arr1, '/api/article/articleKeyword', {
-											'keyword': search
-										})
-									}, 5)
+									//是否开启分页
+									if(!res.arr2){
+										setTimeout(function() {
+											//上拉加载
+											data_lod(res.arr1, '/api/article/articleKeyword', {
+												'keyword': search
+											})
+										}, 20)
+									}else{
+										$(".loadMore").hide()
+									}
+									
 								}
 							})
 						},

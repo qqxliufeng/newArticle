@@ -1,15 +1,18 @@
 package com.android.ql.lf.article.ui.fragments.article
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.support.v7.view.menu.MenuBuilder
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.webkit.JavascriptInterface
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -26,6 +29,7 @@ import com.android.ql.lf.article.ui.fragments.login.LoginFragment
 import com.android.ql.lf.article.ui.fragments.mine.MyFriendListFragment
 import com.android.ql.lf.article.ui.fragments.mine.PersonalIndexFragment
 import com.android.ql.lf.article.ui.fragments.other.ArticleWebViewFragment
+import com.android.ql.lf.article.ui.fragments.other.BrowserImageFragment
 import com.android.ql.lf.article.ui.fragments.other.NetWebViewFragment
 import com.android.ql.lf.article.ui.fragments.share.ArticleShareDialogFragment
 import com.android.ql.lf.article.ui.fragments.share.ImagePosterShareFragment
@@ -44,6 +48,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPI
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import kotlinx.android.synthetic.main.fragment_article_info_for_normal_layout.*
 import org.jetbrains.anko.bundleOf
+import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.support.v4.toast
 import org.json.JSONObject
 import rx.Observable
@@ -264,6 +269,7 @@ class ArticleInfoForNormalFragment : BaseRecyclerViewFragment<ArticleCommentItem
         }
     }
 
+    @SuppressLint("JavascriptInterface")
     override fun <T : Any?> onRequestSuccess(requestID: Int, result: T) {
         when (requestID) {
             0x1 -> {
@@ -325,12 +331,19 @@ class ArticleInfoForNormalFragment : BaseRecyclerViewFragment<ArticleCommentItem
                                 return super.shouldOverrideUrlLoading(view,request)
                             }
                         }
+
+
+                        //**************************************添加图片点击接口*****************************************
+                        mHeaderWebView.addJavascriptInterface(ArticleJsInterface(),"article")
+
+
+
                         mHeaderView.findViewById<TextView>(R.id.mTvArticleInfoTitle)
                             .text = mCurrentArticle?.articles_title ?: ""
                         mHeaderView.findViewById<TextView>(R.id.mTvArticleInfoForAuthInfoNickName).text =
                                 mCurrentArticle?.articles_userData?.member_nickname
                         mHeaderView.findViewById<TextView>(R.id.mTvArticleInfoType)
-                            .text = mCurrentArticle?.articles_tags ?: ""
+                            .text = mCurrentArticle?.articles_tags ?: "未分类"
                         mHeaderView.findViewById<TextView>(R.id.mTvArticleInfoDes).text =
                                 "${mCurrentArticle?.articles_times} . 字数${mCurrentArticle?.articles_numcount} . 阅读${mCurrentArticle?.articles_read}"
                         GlideManager.loadFaceCircleImage(
@@ -738,4 +751,17 @@ class ArticleInfoForNormalFragment : BaseRecyclerViewFragment<ArticleCommentItem
         super.onDestroyView()
     }
 
+
+    inner class ArticleJsInterface{
+
+        @JavascriptInterface
+        fun startImageBrowser(src:String?,imagePath:String?){
+            if (src!=null && src.isNotEmpty() && imagePath!=null && imagePath.isNotEmpty()){
+                mContext.runOnUiThread {
+                    val imagePathList = imagePath.split(Regex(","))
+                    BrowserImageFragment.startBrowserImage(this, imagePathList.toList() as ArrayList<String>,imagePathList.indexOf(src))
+                }
+            }
+        }
+    }
 }

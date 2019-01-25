@@ -13,6 +13,7 @@ import com.android.ql.lf.article.R
 import com.android.ql.lf.article.data.*
 import com.android.ql.lf.article.ui.activity.MainActivity
 import com.android.ql.lf.article.ui.fragments.community.LeaveMessageInfoFragment
+import com.android.ql.lf.article.ui.fragments.community.MyLeaveInfoFragment
 import com.android.ql.lf.article.ui.fragments.other.ArticleWebViewFragment
 import com.android.ql.lf.article.utils.*
 import com.android.ql.lf.baselibaray.ui.fragment.BaseRecyclerViewFragment
@@ -50,6 +51,10 @@ class MessageFragment : BaseRecyclerViewFragment<LeaveMessage>() {
 
     private val mCommentCount by lazy {
         headerView.findViewById<TextView>(R.id.mTvBottomMessageCommentCount)
+    }
+
+    private val mMyLeaveList by lazy {
+        headerView.findViewById<FrameLayout>(R.id.mTvBottomMyLeaveCollection)
     }
 
     private val mMessageSwitch by lazy {
@@ -107,6 +112,10 @@ class MessageFragment : BaseRecyclerViewFragment<LeaveMessage>() {
         mMessageSwitch.doClickWithUserStatusStart("") {
             mPresent.getDataByPost(0x1, getBaseParamsWithModAndAct(MESSAGE_MODULE, PUSH_ACT))
         }
+
+        mMyLeaveList.doClickWithUserStatusStart(""){
+            MyLeaveInfoFragment.startMyLeaveInfoFragment(mContext)
+        }
     }
 
     private fun isCancelRedNotify(){
@@ -161,7 +170,6 @@ class MessageFragment : BaseRecyclerViewFragment<LeaveMessage>() {
                 UserInfo.user_push = json.optInt("member_push")
                 mMessageSwitch.isChecked = UserInfo.user_push == 1
                 if (commentCount > 0) {
-
                     mCommentCount.visibility = View.VISIBLE
                     mCommentCount.text = "$commentCount"
                 } else {
@@ -202,6 +210,7 @@ class MessageFragment : BaseRecyclerViewFragment<LeaveMessage>() {
 
     override fun onMyItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         super.onMyItemClick(adapter, view, position)
+        isCancelRedNotify()
         LeaveMessageInfoFragment.startLeaveMessageInfoFragment(mContext,mArrayList[position].leave_uid)
     }
 }

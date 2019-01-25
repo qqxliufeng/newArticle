@@ -10,10 +10,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                  android:text="1、请上传您的身份证正面照片"
-                  android:padding="@dimen/dp_10"
-                  android:textColor="@color/blackTextColor"/>
+        <TextView
+                android:id="@+id/mTvIdentityAuthZMName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1、请上传您的身份证正面照片"
+                android:padding="@dimen/dp_10"
+                android:textColor="@color/blackTextColor"/>
 
         <ImageView
                 android:id="@+id/mIvIdentityAuthZM"
@@ -40,6 +43,7 @@
         </RelativeLayout>
 
         <TextView
+                android:id="@+id/mTvIdentityAuthFMName"
                 android:layout_marginTop="@dimen/dp_10"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:text="2、请上传身份证或认证一卡通，证件照片需清晰"
@@ -71,6 +75,13 @@
                     android:text="上传"/>
         </RelativeLayout>
 
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:text="审核失败："
+                  android:textSize="@dimen/sp_14"
+                  android:id="@+id/mTvIdentityAuthFailReason"
+                  android:textColor="@color/blackTextColor"
+                  android:layout_marginLeft="20dp"/>
+
         <LinearLayout
                 android:id="@+id/mLlIdentityAuthBottomContainer"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -82,9 +93,16 @@
                       android:textColor="@color/blackTextColor"/>
 
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:orientation="horizontal">
+                          android:orientation="horizontal"
+                          android:paddingLeft="@dimen/dp_10"
+                          android:paddingRight="@dimen/dp_10">
 
-                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                <ImageView android:layout_width="match_parent" android:layout_height="wrap_content"
+                           android:id="@+id/mIvIdentityAuthPic"
+                           android:layout_marginLeft="@dimen/dp_10"
+                           android:layout_marginRight="@dimen/dp_10"
+                />
+                <!--<TextView android:layout_width="0dp" android:layout_height="wrap_content"
                           android:layout_weight="1"
                           android:gravity="center"
                           android:textColor="@color/blackTextColor"
@@ -97,7 +115,7 @@
                           android:gravity="center"
                           android:textColor="@color/blackTextColor"
                           android:drawablePadding="@dimen/dp_10"
-                          android:text="认证一卡通"/>
+                          android:text="认证一卡通"/>-->
             </LinearLayout>
 
 

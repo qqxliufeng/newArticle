@@ -302,6 +302,11 @@
                         android:orientation="vertical">
 
                     <TextView
+                            android:id="@+id/mTvMineAccountSystemNotify"
+                            style="@style/style_mine_action_2"
+                            android:text="系统公告"/>
+
+                    <TextView
                             android:id="@+id/mTvMineAccountSafe"
                             style="@style/style_mine_action_2"
                             android:text="账号与安全"/>

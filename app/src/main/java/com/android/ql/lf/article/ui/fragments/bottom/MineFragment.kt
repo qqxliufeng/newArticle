@@ -13,6 +13,7 @@ import com.android.ql.lf.article.ui.activity.WebViewContainerActivity
 import com.android.ql.lf.article.ui.fragments.login.LoginFragment
 import com.android.ql.lf.article.ui.fragments.mine.*
 import com.android.ql.lf.article.ui.fragments.other.ArticleWebViewFragment
+import com.android.ql.lf.article.ui.fragments.other.SystemNotifyFragment
 import com.android.ql.lf.article.ui.fragments.share.AppShareDialogFragment
 import com.android.ql.lf.article.utils.*
 import com.android.ql.lf.baselibaray.ui.fragment.BaseNetWorkingFragment
@@ -159,6 +160,9 @@ class MineFragment : BaseNetWorkingFragment() {
         }
         mTvMineProtocol.setOnClickListener {
             ArticleWebViewFragment.startArticleWebViewFragment(mContext, "用户协议", "protocol.html",ArticleType.OTHER.type)
+        }
+        mTvMineAccountSystemNotify.setOnClickListener {
+            SystemNotifyFragment.startSystemNotifyFragment(mContext)
         }
         if (!UserInfo.isLogin() && PreferenceUtils.getPrefInt(mContext,USER_ID_FLAG,-1) != -1){
             mPresent.getDataByPost(0x0, getBaseParamsWithModAndAct(MEMBER_MODULE, PERSONAL_ACT).addParam("uid",PreferenceUtils.getPrefInt(mContext,USER_ID_FLAG,-1)))

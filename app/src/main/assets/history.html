@@ -50,21 +50,25 @@
 		</div>
 	</body>
 	<script id="list-template" type="text/html">
+		{{if items}}
 		{{each items as item index}}
 			<li>
-				
 				<nav>{{item.browse_ymd}}</nav>
+				{{if item.browse_data}}
 				{{each item.browse_data as itemone}}
-				<div class="whitebg clearfix long" id="{{data.browse_id}}" onclick="jumpDet(this)">
-					<input type="hidden" value="{{data.browse_id}}" />
-					<input type="hidden" value="{{data.browse_theme}}" />
-					<input type="hidden" value="{{data.browse_status}}" />
+				<div class="whitebg clearfix long" id="{{itemone.browse_id}}" onclick="jumpDet(this)">
+					<input type="hidden" value="{{itemone.browse_id}}" />
+					<input type="hidden" value="{{itemone.browse_theme}}" />
+					<input type="hidden" value="{{itemone.browse_status}}" />
 					<div class="fl">{{itemone.browse_content}}</div>
 					<span class="fr gary">{{itemone.browse_hi}}读过</span>
 				</div>
 				{{/each}}
+			    {{/if}}
 			</li>
 		{{/each}}
+		{{/if}}
+	   
 	</script>
 	<script>
 		mui.init({
@@ -79,7 +83,7 @@
 		});
 		$(function() {
 		   //获取webview.js  返回的用户ID
-//		   var uid  = 655
+//		   var uid  = 650
            var uid  = article.getUserId()
 			//实例化vue
 			vue = new Vue({
