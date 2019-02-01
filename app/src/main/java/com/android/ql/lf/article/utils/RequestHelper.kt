@@ -36,6 +36,7 @@ const val WEIBO_LOGIN_ACT = "weiboLogin"
 const val QQ_LOGIN_ACT = "qqLogin"
 const val PERFECT_ACT = "perfect"
 const val RESET_PASSWORD_ACT = "resetPassword"
+const val IS_PHONE_ACT = "isPhone"
 
 /**       文章模块                **/
 const val ARTICLE_MODULE = "article"

@@ -305,6 +305,12 @@
                             android:id="@+id/mTvMineAccountSystemNotify"
                             style="@style/style_mine_action_2"
                             android:text="系统公告"/>
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:layout_marginRight="@dimen/dp_10"
+                            android:background="@color/lineColor"/>
 
                     <TextView
                             android:id="@+id/mTvMineAccountSafe"

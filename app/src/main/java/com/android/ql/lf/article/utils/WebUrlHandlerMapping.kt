@@ -1,6 +1,7 @@
 package com.android.ql.lf.article.utils
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.util.TypedValue
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -30,7 +31,7 @@ fun WebView.loadLocalHtml(url: String = "") {
 fun WebView.loadWrapperData(data: String?) {
     this.loadData(
         """<div style="font-size: 2.8rem;">$data</div>
-                           <script type="text/javascript">
+                        <script type="text/javascript">
                                 (function(){
                                     var imagePathList = [];
                                     var aobjs = document.getElementsByTagName("a");
@@ -51,4 +52,20 @@ fun WebView.loadWrapperData(data: String?) {
                            </script>
                         """, "text/html;charset=UTF-8", null
     )
+}
+
+
+fun WebView.addImageClick(){
+    loadUrl("""javascript:(function(){
+                                var imagePathList = [];
+                                var objs = document.getElementsByTagName("img");
+                                for(var j=0;j<objs.length;j++){
+                                    var img = objs[j];
+                                    imagePathList.push(img.src);
+                                    img.onclick = function(){
+                                        article.startImageBrowser(this.src,imagePathList.toString())
+                                    }
+                                }
+                            })()
+""")
 }

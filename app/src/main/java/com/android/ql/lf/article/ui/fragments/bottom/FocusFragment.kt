@@ -108,8 +108,6 @@ class FocusFragment : BaseNetWorkingFragment() {
                         }
                         mTlArticleList.setupWithViewPager(mVpArticleList)
                     }
-                } else {
-                    toast("加载失败")
                 }
             } else {
                 toast("加载失败")

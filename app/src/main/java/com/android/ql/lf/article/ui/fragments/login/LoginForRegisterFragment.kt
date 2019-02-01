@@ -77,7 +77,7 @@ class LoginForRegisterFragment : BaseNetWorkingFragment(){
             PreferenceUtils.setPrefString(mContext,"user_phone",mEtLoginUserPhone.getTextString())
             PreferenceUtils.setPrefString(mContext,"user_code",mEtLoginUserVerCode.getTextString())
             PreferenceUtils.setPrefString(mContext,"user_password",mEtLoginUserPassword.getTextString())
-            (parentFragment as LoginFragment).positionFragment(1)
+            mPresent.getDataByPost(0x1, getBaseParamsWithModAndAct(LOGIN_MODULE,IS_PHONE_ACT))
         }
     }
 
@@ -85,6 +85,8 @@ class LoginForRegisterFragment : BaseNetWorkingFragment(){
         super.onRequestStart(requestID)
         if (requestID == 0x0) {
             getFastProgressDialog("正在获取验证码……")
+        }else if (requestID == 0x1){
+            getFastProgressDialog("加载中……")
         }
     }
 
@@ -96,6 +98,17 @@ class LoginForRegisterFragment : BaseNetWorkingFragment(){
                     toast("验证码发送成功，请注意查收")
                     mCode = json.optInt("code")
                 }
+            }
+        }else if (requestID == 0x1){
+            val  check = checkResultCode(result)
+            if (check!=null) {
+                if (check.code == SUCCESS_CODE) {
+                    (parentFragment as LoginFragment).positionFragment(1)
+                }else{
+                    toast((check.obj as JSONObject).optString(MSG_FLAG))
+                }
+            }else{
+                toast("手机号验证失败")
             }
         }
     }

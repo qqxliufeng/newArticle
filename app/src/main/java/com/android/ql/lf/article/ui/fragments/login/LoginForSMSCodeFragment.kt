@@ -200,13 +200,20 @@ class LoginForSMSCodeFragment : BaseNetWorkingFragment(),IUiListener {
             0x1 -> try {
                 val check = checkResultCode(result)
                 if (check != null) {
-                    if (check.code == SUCCESS_CODE) {
-                        thirdLoginSuccess(check)
-                    } else if (check.code == "400") { // 第一次登录，需完善头像和昵称
-                        PreferenceUtils.setPrefString(mContext,"user_phone",mEtLoginUserPhone.getTextString())
-                        PreferenceUtils.setPrefString(mContext,"user_code",mEtLoginUserVerCode.getTextString())
-                        PreferenceUtils.setPrefString(mContext, "user_password", "")
-                        (parentFragment as LoginFragment).positionFragment(1)
+                    when {
+                        check.code == SUCCESS_CODE -> thirdLoginSuccess(check)
+                        check.code == "400" -> { // 第一次登录，需完善头像和昵称
+                            PreferenceUtils.setPrefString(mContext,"user_phone",mEtLoginUserPhone.getTextString())
+                            PreferenceUtils.setPrefString(mContext,"user_code",mEtLoginUserVerCode.getTextString())
+                            PreferenceUtils.setPrefString(mContext, "user_password", "")
+                            (parentFragment as LoginFragment).positionFragment(1)
+                        }
+                        check.code == "500" -> {
+                            toast((check.obj as JSONObject).optString(MSG_FLAG))
+                        }
+                        else -> {
+                            toast("登录失败")
+                        }
                     }
                 } else {
                     toast("登录失败")
@@ -224,6 +231,9 @@ class LoginForSMSCodeFragment : BaseNetWorkingFragment(),IUiListener {
                         check.code == "202" -> { //绑定手机号
                             prefect(check)
                         }
+                        check.code == "500" -> {
+                            toast((check.obj as JSONObject).optString(MSG_FLAG))
+                        }
                         else -> {
                             toast("登录失败……")
                         }
@@ -240,6 +250,9 @@ class LoginForSMSCodeFragment : BaseNetWorkingFragment(),IUiListener {
                         check.code == "202" -> { //绑定手机号
                             prefect(check)
                         }
+                        check.code == "500" -> {
+                            toast((check.obj as JSONObject).optString(MSG_FLAG))
+                        }
                         else -> {
                             toast("登录失败……")
                         }
@@ -255,6 +268,9 @@ class LoginForSMSCodeFragment : BaseNetWorkingFragment(),IUiListener {
                         }
                         check.code == "202" -> { //绑定手机号
                             prefect(check)
+                        }
+                        check.code == "500" -> {
+                            toast((check.obj as JSONObject).optString(MSG_FLAG))
                         }
                         else -> {
                             toast("登录失败……")

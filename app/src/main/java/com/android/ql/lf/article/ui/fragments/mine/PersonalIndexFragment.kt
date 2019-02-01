@@ -204,54 +204,70 @@ class PersonalIndexFragment : BaseRecyclerViewFragment<ArticleItem>() {
             0x0 -> {
                 processList(result as String,ArticleItem::class.java)
                 val check = checkResultCode(result)
-                if (check!=null && currentPage == 0){
-                    val json = (check.obj as JSONObject).optJSONObject("arr")
-                    if (json!=null){
-                        sharePath = "${json.optString("member_shareUrl")}?uid=${UserInfo.user_id}&reuid=$pid"
-                        facePath = json.optString("member_pic")
-                        GlideManager.loadFaceCircleImage(mContext,facePath,mIvPersonalIndexUserFace)
-                        nickName = json.optString("member_nickname")
-                        mTvPersonalIndexUserNickName.text = nickName
-                        mTvPersonalIndexUserDes.text = if (TextUtils.isEmpty(json.optString("member_signature"))) { "暂无简介" }else{ json.optString("member_signature") }
-                        mTvPersonalIndexFocusCount.text = "${json.optString("member_likeCount")}关注"
-                        mTvPersonalIndexFansCount.text = "${json.optString("member_fanCount")}粉丝"
-                        mTvPersonalIndexArticleCount.text = "文章（${json.optString("member_articleCount")}）"
-                        mTvPersonalIndexNumAndLove.text = "写了${json.optString("member_fontCount")}字，获得了${json.optString("member_loveCount")}个喜欢"
-                        mTvPersonalIndexAddress.text = if (TextUtils.isEmpty(json.optString("member_address")) || json.optString("member_address") == "null"){ "北京" } else { json.optString("member_address") }
-                        val age = json.optString("member_age")
-                        if (TextUtils.isEmpty(age) || age == "null") {
-                            mTvPersonalIndexAge.text = "00"
-                        }else{
-                            mTvPersonalIndexAge.text = "${json.optString("member_age")}"
+                if (check!=null && currentPage == 0) {
+                    if (check.code == SUCCESS_CODE) {
+                        val json = (check.obj as JSONObject).optJSONObject("arr")
+                        if (json != null) {
+                            sharePath = "${json.optString("member_shareUrl")}?uid=${UserInfo.user_id}&reuid=$pid"
+                            facePath = json.optString("member_pic")
+                            GlideManager.loadFaceCircleImage(mContext, facePath, mIvPersonalIndexUserFace)
+                            nickName = json.optString("member_nickname")
+                            mTvPersonalIndexUserNickName.text = nickName
+                            mTvPersonalIndexUserDes.text = if (TextUtils.isEmpty(json.optString("member_signature"))) {
+                                "暂无简介"
+                            } else {
+                                json.optString("member_signature")
+                            }
+                            mTvPersonalIndexFocusCount.text = "${json.optString("member_likeCount")}关注"
+                            mTvPersonalIndexFansCount.text = "${json.optString("member_fanCount")}粉丝"
+                            mTvPersonalIndexArticleCount.text = "文章（${json.optString("member_articleCount")}）"
+                            mTvPersonalIndexNumAndLove.text =
+                                    "写了${json.optString("member_fontCount")}字，获得了${json.optString("member_loveCount")}个喜欢"
+                            mTvPersonalIndexAddress.text =
+                                    if (TextUtils.isEmpty(json.optString("member_address")) || json.optString("member_address") == "null") {
+                                        "北京"
+                                    } else {
+                                        json.optString("member_address")
+                                    }
+                            val age = json.optString("member_age")
+                            if (TextUtils.isEmpty(age) || age == "null") {
+                                mTvPersonalIndexAge.text = "00"
+                            } else {
+                                mTvPersonalIndexAge.text = "${json.optString("member_age")}"
+                            }
+                            focusStatus = json.optInt("member_likeStatus")
+                            val cover = json.optString("member_cover")
+                            if (!TextUtils.isEmpty(cover)) {
+                                GlideManager.loadImage(mContext, cover, mIvPersonalEditBgImage)
+                            }
+                            if (focusStatus == 0) {
+                                mTvPersonalIndexFocus.text = "+ 关注"
+                                mTvPersonalIndexFocus.isChecked = true
+                            } else {
+                                mTvPersonalIndexFocus.text = "✓ 已关注"
+                                mTvPersonalIndexFocus.isChecked = false
+                            }
+                            mTvPersonalIndexFocus.setOnClickListener {
+                                mPresent.getDataByPost(
+                                    0x2,
+                                    getBaseParamsWithModAndAct(MEMBER_MODULE, MY_LIKE_DO_ACT).addParam("reuid", pid)
+                                )
+                            }
+                            mIvShare.setOnClickListener {
+                                shareFragment.setWxApi(wxApi)
+                                shareFragment.setWeiBoShareHandler(weiboShareHandler)
+                                shareItem.title = "推荐作者：$nickName"
+                                shareItem.content = "推荐作者：$nickName"
+                                shareItem.shareImagePath = facePath
+                                shareItem.url = sharePath
+                                shareFragment.setShareArticle(shareItem)
+                                shareFragment.show(childFragmentManager, "share_dialog")
+                            }
                         }
-                        focusStatus = json.optInt("member_likeStatus")
-                        val cover = json.optString("member_cover")
-                        if (!TextUtils.isEmpty(cover)) {
-                            GlideManager.loadImage(mContext,cover,mIvPersonalEditBgImage)
-                        }
-                        if (focusStatus == 0){
-                            mTvPersonalIndexFocus.text = "+ 关注"
-                            mTvPersonalIndexFocus.isChecked = true
-                        }else{
-                            mTvPersonalIndexFocus.text = "✓ 已关注"
-                            mTvPersonalIndexFocus.isChecked = false
-                        }
-                        mTvPersonalIndexFocus.setOnClickListener {
-                            mPresent.getDataByPost(
-                                0x2,
-                                getBaseParamsWithModAndAct(MEMBER_MODULE, MY_LIKE_DO_ACT).addParam("reuid", pid)
-                            )
-                        }
-                        mIvShare.setOnClickListener {
-                            shareFragment.setWxApi(wxApi)
-                            shareFragment.setWeiBoShareHandler(weiboShareHandler)
-                            shareItem.title = "推荐作者：$nickName"
-                            shareItem.content = "推荐作者：$nickName"
-                            shareItem.shareImagePath = facePath
-                            shareItem.url = sharePath
-                            shareFragment.setShareArticle(shareItem)
-                            shareFragment.show(childFragmentManager,"share_dialog")
-                        }
+                    }else if (check.code == "500"){
+                        toast((check.obj as JSONObject).optString(MSG_FLAG))
+                        PersonalIndexFragment.startPersonalIndexFragment(mContext,UserInfo.user_id)
+                        finish()
                     }
                 }
             }

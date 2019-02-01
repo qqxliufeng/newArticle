@@ -280,6 +280,8 @@ class ArticleInfoForNormalFragment : BaseRecyclerViewFragment<ArticleCommentItem
                         ArticleItem::class.java
                     )
                     mHeaderWebView.post {
+                        //**************************************添加图片点击接口*****************************************
+                        mHeaderWebView.addJavascriptInterface(ArticleJsInterface(),"article")
                         val count = menu?.size() ?: 0
                         if (UserInfo.user_id == mCurrentArticle?.articles_uid) {
                             when (ArticleType.getTypeNameById(mCurrentArticle?.articles_status ?: 0)) {
@@ -330,14 +332,12 @@ class ArticleInfoForNormalFragment : BaseRecyclerViewFragment<ArticleCommentItem
                                 }
                                 return super.shouldOverrideUrlLoading(view,request)
                             }
+
+                            override fun onPageFinished(view: WebView?, url: String?) {
+                                super.onPageFinished(view, url)
+                                view?.addImageClick()
+                            }
                         }
-
-
-                        //**************************************添加图片点击接口*****************************************
-                        mHeaderWebView.addJavascriptInterface(ArticleJsInterface(),"article")
-
-
-
                         mHeaderView.findViewById<TextView>(R.id.mTvArticleInfoTitle)
                             .text = mCurrentArticle?.articles_title ?: ""
                         mHeaderView.findViewById<TextView>(R.id.mTvArticleInfoForAuthInfoNickName).text =
@@ -759,7 +759,15 @@ class ArticleInfoForNormalFragment : BaseRecyclerViewFragment<ArticleCommentItem
             if (src!=null && src.isNotEmpty() && imagePath!=null && imagePath.isNotEmpty()){
                 mContext.runOnUiThread {
                     val imagePathList = imagePath.split(Regex(","))
-                    BrowserImageFragment.startBrowserImage(this, imagePathList.toList() as ArrayList<String>,imagePathList.indexOf(src))
+                    if(imagePathList.size == 1) {
+                        BrowserImageFragment.startBrowserImage(this, arrayListOf(imagePathList[0]),imagePathList.indexOf(src))
+                    }else {
+                        BrowserImageFragment.startBrowserImage(
+                            this,
+                            imagePathList.toList() as ArrayList<String>,
+                            imagePathList.indexOf(src)
+                        )
+                    }
                 }
             }
         }

@@ -103,6 +103,11 @@ class ArticleInfoForTrashFragment : BaseNetWorkingFragment() {
                                 NetWebViewFragment.startNetWebViewFragment(mContext, url ?: "")
                                 return true
                             }
+
+                            override fun onPageFinished(view: WebView?, url: String?) {
+                                super.onPageFinished(view, url)
+                                view?.addImageClick()
+                            }
                         }
                         mTrashWebView.addJavascriptInterface(ArticleJsInterface(),"article")
                         mTvArticleInfoTitle.text = mCurrentArticle?.articles_title ?: ""

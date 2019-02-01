@@ -202,6 +202,8 @@ class MineFragment : BaseNetWorkingFragment() {
                         if (UserInfo.jsonToUserInfo(jsonObject)) {
                             UserInfo.postUserInfo()
                         }
+                    }else if (check.code == "500") {
+                        toast((check.obj as JSONObject).optString(MSG_FLAG))
                     }
                 }
             } catch (e: Exception) {
